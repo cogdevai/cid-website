@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CID — Cognitive Intelligence Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --text-primary: #fafaf9;
+            --text-secondary: #a1a1a1;
+            --text-muted: #6b6b6b;
+            --accent: #c4ff5a;
+            --accent-dim: rgba(196, 255, 90, 0.1);
+            --neural-blue: #4a9eff;
+            --neural-purple: #a855f7;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Instrument Serif', serif;
+        }
+
+        /* Neural Background Canvas */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--bg-primary), transparent);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(196, 255, 90, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 3rem;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(196, 255, 90, 0.2);
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            max-width: 600px;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 3rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(196, 255, 90, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            border-radius: 3rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1s backwards;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--text-muted), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: var(--bg-secondary);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .philosophy-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .philosophy-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .philosophy-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brain-diagram {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            position: relative;
+        }
+
+        .brain-ring {
+            position: absolute;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .brain-ring:nth-child(1) {
+            inset: 0;
+            animation-duration: 40s;
+        }
+
+        .brain-ring:nth-child(2) {
+            inset: 15%;
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+
+        .brain-ring:nth-child(3) {
+            inset: 30%;
+            animation-duration: 20s;
+        }
+
+        .brain-core {
+            position: absolute;
+            inset: 40%;
+            background: radial-gradient(circle, var(--accent-dim), transparent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brain-core::after {
+            content: '🧠';
+            font-size: 3rem;
+            filter: grayscale(0.3);
+        }
+
+        .brain-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Approach Section */
+        .approach {
+            background: var(--bg-primary);
+        }
+
+        .approach-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .approach-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .approach-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(196, 255, 90, 0.2);
+        }
+
+        .approach-card:hover::before {
+            opacity: 1;
+        }
+
+        .approach-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-dim);
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Updated: Card titles now use same font as nav-cta button */
+        .approach-card h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .approach-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Team Section - Redesigned with Neural Network */
+        .team {
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        .team-intro {
+            max-width: 700px;
+            margin-bottom: 4rem;
+        }
+
+        .team-intro p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .team-network-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 4rem 0;
+        }
+
+        #team-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .team-center-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, var(--accent-dim), transparent);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            animation: pulseGlow 3s ease infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(196, 255, 90, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(196, 255, 90, 0.5); }
+        }
+
+        .team-center-node h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .team-center-node span {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .floating-role {
+            position: absolute;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            white-space: nowrap;
+            z-index: 5;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .floating-role:hover {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(196, 255, 90, 0.2);
+        }
+
+        .floating-role.researchers {
+            top: 10%;
+            left: 20%;
+            animation: float1 6s ease-in-out infinite;
+        }
+
+        .floating-role.ml-engineers {
+            top: 15%;
+            right: 20%;
+            animation: float2 7s ease-in-out infinite;
+        }
+
+        .floating-role.ai-architects {
+            bottom: 20%;
+            left: 15%;
+            animation: float3 5s ease-in-out infinite;
+        }
+
+        .floating-role.software-engineers {
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            animation: float5 5.5s ease-in-out infinite;
+        }
+
+        .floating-role.data-scientists {
+            top: 50%;
+            right: 8%;
+            transform: translateY(-50%);
+            animation: float6 7.5s ease-in-out infinite;
+        }
+
+        .floating-role.model-trainers {
+            bottom: 15%;
+            right: 18%;
+            animation: float4 6.5s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(10px, 15px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-15px, 10px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(12px, -10px); }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, -15px); }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(8px); }
+        }
+
+        @keyframes float6 {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-8px); }
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--bg-primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin-top: 4rem;
+        }
+
+        .service-item {
+            background: var(--bg-primary);
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .service-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .service-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+        }
+
+        .service-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .service-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .service-tag {
+            padding: 0.35rem 0.75rem;
+            background: var(--accent-dim);
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+
+        /* Founder Section */
+        .founder {
+            background: var(--bg-secondary);
+            padding: 6rem 3rem;
+        }
+
+        .founder-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .founder-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-dim), rgba(74, 158, 255, 0.1));
+            border: 2px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .founder-image::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--accent), var(--neural-blue), var(--neural-purple), var(--accent));
+            z-index: -1;
+            animation: rotate 8s linear infinite;
+        }
+
+        .founder-initials {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .founder-info h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .founder-title {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .founder-role {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .founder-bio {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .founder-email {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .founder-email:hover {
+            color: var(--accent);
+        }
+
+        /* Mission Statement */
+        .mission {
+            background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+            text-align: center;
+            padding: 10rem 3rem;
+        }
+
+        .mission-quote {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+            line-height: 1.4;
+        }
+
+        .mission-quote em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .mission-attribution {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Meeting Request Section */
+        .meeting-section {
+            background: var(--bg-primary);
+            padding: 6rem 3rem;
+        }
+
+        .meeting-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .meeting-container h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .meeting-container > p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .meeting-form {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1a1' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 3rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(196, 255, 90, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--bg-secondary);
+            padding: 8rem 3rem;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 5rem;
+            background: linear-gradient(135deg, rgba(196, 255, 90, 0.03), rgba(74, 158, 255, 0.03));
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(196, 255, 90, 0.05), transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta-container h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            padding: 4rem 3rem 2rem;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .philosophy-grid,
+            .approach-cards,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .team-network-container {
+                height: 600px;
+            }
+
+            .floating-role {
+                font-size: 0.7rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .team-network-container {
+                height: 500px;
+            }
+
+            .floating-role {
+                font-size: 0.65rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .team-center-node {
+                width: 120px;
+                height: 120px;
+            }
+
+            .team-center-node h3 {
+                font-size: 1.2rem;
+            }
+
+            .founder-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .founder-initials {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Neural Background -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">CID</a>
+        <ul class="nav-links">
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#services">Services</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Start a Project</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Cognitive Intelligence Development</div>
+        <h1>Building <em>Human-Level</em><br>Intelligence Systems</h1>
+        <p class="hero-subtitle">We apply cognitive science to create AI systems that preserve human connection, understanding, and authentic engagement for brands that refuse to compromise.</p>
+        <div class="hero-cta-group">
+            <a href="mailto:benan@cogdev.ai?subject=ML%20Solution%20Inquiry&body=Hi!%20We%20are%20looking%20for%20a%20ML%20solution%20that..." class="btn-primary">
+                Begin Collaboration
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="#philosophy" class="btn-secondary">Explore Our Approach</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Discover</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="philosophy">
+        <div class="reveal">
+            <span class="section-label">Our Philosophy</span>
+            <h2 class="section-title">Intelligence isn't about replacing humans—<em>it's about amplifying them.</em></h2>
+        </div>
+        <div class="philosophy-grid">
+            <div class="philosophy-text reveal">
+                <p>At CID, we reject the notion that artificial intelligence must sacrifice the qualities that make human interaction meaningful. Our cognitive science approach understands that true intelligence emerges from the intricate dance between perception, memory, reasoning, and emotion.</p>
+                <p>We study how minds work—both biological and artificial—to build systems that don't just process information, but genuinely understand context, nuance, and the subtle layers of human communication.</p>
+                <p>Every algorithm we design, every model we train, every system we deploy carries within it a deep respect for the complexity of human cognition. This isn't just engineering—it's cognitive architecture.</p>
+            </div>
+            <div class="philosophy-visual reveal">
+                <div class="brain-diagram">
+                    <div class="brain-ring">
+                        <div class="brain-node" style="top: 0; left: 50%; transform: translate(-50%, -50%);"></div>
+                        <div class="brain-node" style="top: 50%; right: 0; transform: translate(50%, -50%);"></div>
+                    </div>
+                    <div class="brain-ring">
+                        <div class="brain-node" style="bottom: 0; left: 50%; transform: translate(-50%, 50%);"></div>
+                    </div>
+                    <div class="brain-ring">
+                        <div class="brain-node" style="top: 50%; left: 0; transform: translate(-50%, -50%);"></div>
+                    </div>
+                    <div class="brain-core"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="approach" id="approach">
+        <div class="reveal">
+            <span class="section-label">The CID Approach</span>
+            <h2 class="section-title">Cognitive science meets <em>machine learning</em></h2>
+        </div>
+        <div class="approach-cards">
+            <div class="approach-card reveal">
+                <div class="approach-icon">🔬</div>
+                <h3>Research-First</h3>
+                <p>Every project begins with understanding—of your domain, your users, and the cognitive processes that drive engagement. We ground our work in peer-reviewed cognitive science, ensuring our solutions are built on proven principles of how minds actually work.</p>
+            </div>
+            <div class="approach-card reveal">
+                <div class="approach-icon">🧬</div>
+                <h3>Adaptive Architecture</h3>
+                <p>Drawing from theories of embodied cognition and situated learning, we design systems that adapt and evolve. Our architectures mirror the flexibility of human thought—capable of transfer learning, contextual reasoning, and genuine understanding.</p>
+            </div>
+            <div class="approach-card reveal">
+                <div class="approach-icon">💡</div>
+                <h3>Human-Centered AI</h3>
+                <p>We believe the best AI enhances rather than replaces human capabilities. Our systems are designed to collaborate, to explain their reasoning, and to maintain the warmth and authenticity that define meaningful human interactions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - Redesigned -->
+    <section class="team" id="team">
+        <div class="reveal">
+            <span class="section-label">Dynamic Teams</span>
+            <h2 class="section-title">Assembled for <em>your vision</em></h2>
+        </div>
+        <div class="team-intro reveal">
+            <p>We don't believe in one-size-fits-all teams. For every project, we assemble a custom constellation of specialists—each chosen for their unique expertise in your specific challenge.</p>
+        </div>
+        <div class="team-network-container reveal">
+            <canvas id="team-canvas"></canvas>
+            <div class="team-center-node">
+                <h3>You</h3>
+                <span>Customized Team</span>
+            </div>
+            <div class="floating-role researchers">🔬 Researchers & Scientists</div>
+            <div class="floating-role ml-engineers">🤖 ML Engineers</div>
+            <div class="floating-role ai-architects">🧠 AI Architects</div>
+            <div class="floating-role software-engineers">⚙️ Software Engineers</div>
+            <div class="floating-role data-scientists">📊 Data Scientists</div>
+            <div class="floating-role model-trainers">🎯 Model Training Specialists</div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="reveal">
+            <span class="section-label">Engagement Models</span>
+            <h2 class="section-title">Flexible partnerships for <em>every stage</em></h2>
+        </div>
+        <div class="services-grid reveal">
+            <div class="service-item">
+                <span class="service-number">01</span>
+                <h3>Full Deployment</h3>
+                <p>End-to-end development and deployment of intelligent systems. We handle everything from research and design to production infrastructure and ongoing optimization.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Architecture</span>
+                    <span class="service-tag">Development</span>
+                    <span class="service-tag">Deployment</span>
+                    <span class="service-tag">Maintenance</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <span class="service-number">02</span>
+                <h3>Algorithm & Research</h3>
+                <p>Pure cognitive science and ML research. We design and validate the algorithms, provide detailed specifications, and hand off to your engineering team for implementation.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Research</span>
+                    <span class="service-tag">Algorithm Design</span>
+                    <span class="service-tag">Validation</span>
+                    <span class="service-tag">Documentation</span>
+                </div>
+            </div>
+            <div class="service-item">
+                <span class="service-number">03</span>
+                <h3>ML Team Leadership</h3>
+                <p>Embedded expertise for your existing team. We provide strategic direction, technical leadership, and hands-on mentorship to elevate your ML capabilities from within.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Strategy</span>
+                    <span class="service-tag">Leadership</span>
+                    <span class="service-tag">Training</span>
+                    <span class="service-tag">Best Practices</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="mission">
+        <div class="reveal">
+            <p class="mission-quote">"We build for companies and brands that are <em>passionate about keeping the human connection</em>—organizations that understand technology should serve humanity, not supplant it."</p>
+            <p class="mission-attribution">— The CID Founding Principle</p>
+        </div>
+    </section>
+
+    <!-- Meeting Request Section -->
+    <section class="meeting-section" id="meeting">
+        <div class="meeting-container reveal">
+            <span class="section-label">Let's Connect</span>
+            <h2>Talk About Your Project</h2>
+            <p>Schedule a conversation to explore how we can bring your vision to life.</p>
+            
+            <form class="meeting-form" id="meetingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Your Company">
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">Project Timeline</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select timeline</option>
+                            <option value="immediate">Immediate (< 1 month)</option>
+                            <option value="short">Short-term (1-3 months)</option>
+                            <option value="medium">Medium-term (3-6 months)</option>
+                            <option value="long">Long-term (6+ months)</option>
+                            <option value="exploring">Just exploring</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="project">Tell us about your project</label>
+                    <textarea id="project" name="project" placeholder="Describe your project, challenges, and goals..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Let's Talk About Your Project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-container reveal">
+            <h2>Ready to build intelligence<br>that feels human?</h2>
+            <p>Let's discuss how cognitive science can transform your AI initiatives.</p>
+            <div class="cta-buttons">
+                <a href="mailto:benan@cogdev.ai?subject=ML%20Solution%20Inquiry&body=Hi!%20We%20are%20looking%20for%20a%20ML%20solution%20that..." class="btn-primary">
+                    Start a Conversation
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder" id="founder">
+        <div class="founder-container reveal">
+            <div class="founder-image">
+                <span class="founder-initials">BA</span>
+            </div>
+            <div class="founder-info">
+                <h3>Benan Demir Allan</h3>
+                <p class="founder-title">Cognitive AI Architect</p>
+                <p class="founder-role">Founder & CEO</p>
+                <p class="founder-bio">Building intelligent systems that understand context the way humans do. Bridging the gap between how we think and how machines learn—creating AI that truly serves human needs.</p>
+                <a href="mailto:benan@cogdev.ai" class="founder-email">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    benan@cogdev.ai
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>CID</h3>
+                <p>Cognitive Intelligence Development. Building human-level intelligent systems grounded in cognitive science for brands that value authentic human connection.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Full Deployment</a></li>
+                    <li><a href="#">Research & Algorithm</a></li>
+                    <li><a href="#">Team Leadership</a></li>
+                    <li><a href="#">Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Publications</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Cognitive Intelligence Development. All rights reserved.</span>
+            <div class="footer-social">
+                <a href="#" aria-label="LinkedIn">Li</a>
+                <a href="#" aria-label="X/Twitter">X</a>
+                <a href="#" aria-label="GitHub">Gh</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Neural Network Background Animation
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            const particleCount = Math.floor((canvas.width * canvas.height) / 10000);
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    radius: Math.random() * 2 + 0.5,
+                    opacity: Math.random() * 0.7 + 0.3
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        const opacity = (1 - distance / 150) * 0.25;
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(196, 255, 90, ' + opacity + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            for (let i = 0; i < particles.length; i++) {
+                const particle = particles[i];
+                
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(196, 255, 90, ' + particle.opacity + ')';
+                ctx.fill();
+
+                if (particle.radius > 1.2) {
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.radius * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(196, 255, 90, ' + (particle.opacity * 0.15) + ')';
+                    ctx.fill();
+                }
+
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+            }
+
+            requestAnimationFrame(drawParticles);
+        }
+
+        resizeCanvas();
+        createParticles();
+        drawParticles();
+
+        window.addEventListener('resize', function() {
+            resizeCanvas();
+            createParticles();
+        });
+
+        // Team Section Neural Network Animation
+        const teamCanvas = document.getElementById('team-canvas');
+        const teamCtx = teamCanvas.getContext('2d');
+        let teamNodes = [];
+        let centerX, centerY;
+
+        function resizeTeamCanvas() {
+            const container = teamCanvas.parentElement;
+            teamCanvas.width = container.offsetWidth;
+            teamCanvas.height = container.offsetHeight;
+            centerX = teamCanvas.width / 2;
+            centerY = teamCanvas.height / 2;
+        }
+
+        function createTeamNodes() {
+            teamNodes = [];
+            const nodeCount = 30;
+            
+            for (let i = 0; i < nodeCount; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 100 + Math.random() * 180;
+                teamNodes.push({
+                    x: centerX + Math.cos(angle) * distance,
+                    y: centerY + Math.sin(angle) * distance,
+                    baseX: centerX + Math.cos(angle) * distance,
+                    baseY: centerY + Math.sin(angle) * distance,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 3 + 1,
+                    opacity: Math.random() * 0.6 + 0.3,
+                    orbitSpeed: (Math.random() - 0.5) * 0.002,
+                    orbitAngle: angle,
+                    orbitDistance: distance
+                });
+            }
+        }
+
+        function drawTeamNetwork() {
+            teamCtx.clearRect(0, 0, teamCanvas.width, teamCanvas.height);
+
+            // Draw connections to center
+            for (let i = 0; i < teamNodes.length; i++) {
+                const node = teamNodes[i];
+                const dx = centerX - node.x;
+                const dy = centerY - node.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 250) {
+                    const opacity = (1 - distance / 250) * 0.3;
+                    teamCtx.beginPath();
+                    teamCtx.strokeStyle = 'rgba(196, 255, 90, ' + opacity + ')';
+                    teamCtx.lineWidth = 1;
+                    teamCtx.moveTo(node.x, node.y);
+                    teamCtx.lineTo(centerX, centerY);
+                    teamCtx.stroke();
+                }
+            }
+
+            // Draw connections between nodes
+            for (let i = 0; i < teamNodes.length; i++) {
+                for (let j = i + 1; j < teamNodes.length; j++) {
+                    const dx = teamNodes[i].x - teamNodes[j].x;
+                    const dy = teamNodes[i].y - teamNodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        const opacity = (1 - distance / 100) * 0.2;
+                        teamCtx.beginPath();
+                        teamCtx.strokeStyle = 'rgba(74, 158, 255, ' + opacity + ')';
+                        teamCtx.lineWidth = 0.5;
+                        teamCtx.moveTo(teamNodes[i].x, teamNodes[i].y);
+                        teamCtx.lineTo(teamNodes[j].x, teamNodes[j].y);
+                        teamCtx.stroke();
+                    }
+                }
+            }
+
+            // Draw nodes
+            for (let i = 0; i < teamNodes.length; i++) {
+                const node = teamNodes[i];
+                
+                // Glow
+                teamCtx.beginPath();
+                teamCtx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+                teamCtx.fillStyle = 'rgba(196, 255, 90, ' + (node.opacity * 0.1) + ')';
+                teamCtx.fill();
+
+                // Node
+                teamCtx.beginPath();
+                teamCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                teamCtx.fillStyle = 'rgba(196, 255, 90, ' + node.opacity + ')';
+                teamCtx.fill();
+
+                // Orbit movement
+                node.orbitAngle += node.orbitSpeed;
+                node.x = centerX + Math.cos(node.orbitAngle) * node.orbitDistance + Math.sin(Date.now() * 0.001 + i) * 5;
+                node.y = centerY + Math.sin(node.orbitAngle) * node.orbitDistance + Math.cos(Date.now() * 0.001 + i) * 5;
+            }
+
+            requestAnimationFrame(drawTeamNetwork);
+        }
+
+        resizeTeamCanvas();
+        createTeamNodes();
+        drawTeamNetwork();
+
+        window.addEventListener('resize', function() {
+            resizeTeamCanvas();
+            createTeamNodes();
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            for (let i = 0; i < revealElements.length; i++) {
+                const element = revealElements[i];
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Smooth scroll for navigation
+        const anchors = document.querySelectorAll('a[href^="#"]');
+        for (let i = 0; i < anchors.length; i++) {
+            anchors[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // Meeting Form Handler
+        document.getElementById('meetingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const timeline = document.getElementById('timeline').value;
+            const project = document.getElementById('project').value;
+            
+            const subject = encodeURIComponent("Let's Talk About Your Project - " + name);
+            const body = encodeURIComponent(
+                "Hi Benan!\n\n" +
+                "I'd like to schedule a conversation about a potential project.\n\n" +
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Company: " + (company || "Not specified") + "\n" +
+                "Timeline: " + (timeline || "Not specified") + "\n\n" +
+                "Project Details:\n" + (project || "Not specified") + "\n\n" +
+                "Looking forward to connecting!"
+            );
+            
+            window.location.href = "mailto:benan@cogdev.ai?subject=" + subject + "&body=" + body;
+        });
+    </script>
+</body>
+</html>
