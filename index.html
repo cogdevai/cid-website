@@ -72,11 +72,14 @@
         }
 
         .logo {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            letter-spacing: 0.3em;
-            color: var(--text-primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -962,10 +965,9 @@
             margin-bottom: 4rem;
         }
 
-        .footer-brand h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            letter-spacing: 0.2em;
+        .footer-brand img {
+            height: 50px;
+            width: auto;
             margin-bottom: 1rem;
         }
 
@@ -1151,7 +1153,7 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">CID</a>
+        <a href="#" class="logo"><img src="cid-logo.svg" alt="CID - Cognitive Intelligence Development"></a>
         <ul class="nav-links">
             <li><a href="#philosophy">Philosophy</a></li>
             <li><a href="#approach">Approach</a></li>
@@ -1402,8 +1404,8 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
-                <h3>CID</h3>
-                <p>Cognitive Intelligence Development. Building human-level intelligent systems grounded in cognitive science for brands that value authentic human connection.</p>
+                <img src="cid-logo.svg" alt="CID - Cognitive Intelligence Development">
+                <p>Building human-level intelligent systems grounded in cognitive science for brands that value authentic human connection.</p>
             </div>
             <div class="footer-column">
                 <h4>Company</h4>
