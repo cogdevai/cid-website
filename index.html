@@ -118,6 +118,75 @@
             box-shadow: 0 0 30px rgba(196, 255, 90, 0.3);
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-primary);
+            z-index: 99;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Instrument Serif', serif;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-nav .nav-cta {
+            margin-top: 1rem;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -1051,7 +1120,7 @@
             }
 
             .team-network-container {
-                height: 600px;
+                height: 450px;
             }
 
             .floating-role {
@@ -1078,22 +1147,269 @@
                 display: none;
             }
 
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .logo img {
+                height: 28px;
+            }
+
             section {
-                padding: 4rem 1.5rem;
+                padding: 3rem 1.25rem;
             }
 
             .hero {
-                padding: 6rem 1.5rem;
+                padding: 5rem 1.25rem;
+                min-height: auto;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
             }
 
             .hero-cta-group {
                 flex-direction: column;
                 width: 100%;
-                max-width: 300px;
+                max-width: 100%;
             }
 
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.9rem 1.5rem;
+                font-size: 0.85rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .section-label {
+                font-size: 0.6rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+            }
+
+            .philosophy-text p {
+                font-size: 1rem;
+            }
+
+            .brain-diagram {
+                max-width: 280px;
+            }
+
+            .approach-card {
+                padding: 1.75rem;
+            }
+
+            .approach-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .approach-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .approach-card p {
+                font-size: 0.9rem;
+            }
+
+            /* Team section mobile - simplified layout */
+            .team-network-container {
+                height: 350px;
+            }
+
+            .team-center-node {
+                width: 100px;
+                height: 100px;
+            }
+
+            .team-center-node h3 {
+                font-size: 1rem;
+            }
+
+            .team-center-node span {
+                font-size: 0.55rem;
+            }
+
+            .floating-role {
+                font-size: 0.6rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .floating-role.researchers {
+                top: 5%;
+                left: 5%;
+            }
+
+            .floating-role.ml-engineers {
+                top: 5%;
+                right: 5%;
+                left: auto;
+            }
+
+            .floating-role.ai-architects {
+                bottom: 5%;
+                left: 5%;
+            }
+
+            .floating-role.software-engineers {
+                display: none;
+            }
+
+            .floating-role.data-scientists {
+                display: none;
+            }
+
+            .floating-role.model-trainers {
+                bottom: 5%;
+                right: 5%;
+                left: auto;
+            }
+
+            .team-intro p {
+                font-size: 1rem;
+            }
+
+            /* Services mobile */
+            .service-item {
+                padding: 2rem 1.5rem;
+            }
+
+            .service-number {
+                font-size: 2rem;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .service-item h3 {
+                font-size: 1.25rem;
+            }
+
+            .service-item p {
+                font-size: 0.85rem;
+            }
+
+            .service-tag {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            /* Mission mobile */
+            .mission {
+                padding: 5rem 1.25rem;
+            }
+
+            .mission-quote {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+
+            /* Meeting form mobile */
+            .meeting-section {
+                padding: 4rem 1.25rem;
+            }
+
+            .meeting-form {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.85rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .submit-btn {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* CTA mobile */
+            .cta-section {
+                padding: 4rem 1.25rem;
+            }
+
+            .cta-container {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .cta-container h2 {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+
+            .cta-container p {
+                font-size: 0.95rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            /* Founder mobile */
+            .founder {
+                padding: 4rem 1.25rem;
+            }
+
+            .founder-image {
+                width: 130px;
+                height: 130px;
+            }
+
+            .founder-initials {
+                font-size: 2rem;
+            }
+
+            .founder-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .founder-bio {
+                font-size: 0.9rem;
+            }
+
+            /* Footer mobile */
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand img {
+                height: 35px;
+            }
+
+            .footer-brand p {
+                font-size: 0.85rem;
+            }
+
+            .footer-column h4 {
+                margin-bottom: 1rem;
+            }
+
+            .footer-column a {
+                font-size: 0.85rem;
             }
 
             .footer-bottom {
@@ -1102,35 +1418,38 @@
                 text-align: center;
             }
 
-            .cta-buttons {
-                flex-direction: column;
+            .footer-social a {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 1.75rem;
             }
 
-            .team-network-container {
-                height: 500px;
+            .hero-badge {
+                font-size: 0.55rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
             }
 
             .floating-role {
-                font-size: 0.65rem;
-                padding: 0.5rem 0.75rem;
+                font-size: 0.5rem;
+                padding: 0.3rem 0.5rem;
             }
 
             .team-center-node {
-                width: 120px;
-                height: 120px;
+                width: 80px;
+                height: 80px;
             }
 
             .team-center-node h3 {
-                font-size: 1.2rem;
-            }
-
-            .founder-image {
-                width: 150px;
-                height: 150px;
-            }
-
-            .founder-initials {
-                font-size: 2.5rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -1161,7 +1480,21 @@
             <li><a href="#services">Services</a></li>
         </ul>
         <a href="#contact" class="nav-cta">Start a Project</a>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="#philosophy">Philosophy</a>
+        <a href="#approach">Approach</a>
+        <a href="#team">Team</a>
+        <a href="#services">Services</a>
+        <a href="#contact" class="nav-cta">Start a Project</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1672,13 +2005,13 @@
         // Meeting Form Handler
         document.getElementById('meetingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const company = document.getElementById('company').value;
             const timeline = document.getElementById('timeline').value;
             const project = document.getElementById('project').value;
-            
+
             const subject = encodeURIComponent("Let's Talk About Your Project - " + name);
             const body = encodeURIComponent(
                 "Hi Benan!\n\n" +
@@ -1690,8 +2023,27 @@
                 "Project Details:\n" + (project || "Not specified") + "\n\n" +
                 "Looking forward to connecting!"
             );
-            
+
             window.location.href = "mailto:benan@cogdev.ai?subject=" + subject + "&body=" + body;
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileNavLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                mobileMenuBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
     </script>
 </body>
