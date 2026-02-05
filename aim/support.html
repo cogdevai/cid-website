@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim — Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --text-primary: #fafaf9;
+            --text-secondary: #a1a1a1;
+            --text-muted: #6b6b6b;
+            --accent: #00d1b2;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .app-name {
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-top: 36px;
+            margin-bottom: 12px;
+        }
+        p, li {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 16px;
+            margin-bottom: 12px;
+        }
+        .contact-card a {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .contact-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .faq-item {
+            margin-bottom: 24px;
+        }
+        .faq-item h3 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .faq-item p {
+            color: var(--text-secondary);
+        }
+        .links {
+            display: flex;
+            gap: 24px;
+            margin-top: 12px;
+        }
+        .footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="app-name">Aim: Reach Your Goals</div>
+        <h1>Support</h1>
+        <p class="subtitle">We're here to help. Find answers below or reach out directly.</p>
+
+        <h2>Contact Us</h2>
+        <div class="contact-card">
+            <div class="contact-label">Email</div>
+            <a href="mailto:hello@cogdev.ai">hello@cogdev.ai</a>
+            <p style="margin-top: 8px; margin-bottom: 0;">We typically respond within 24 hours.</p>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <h3>How do I cancel my subscription?</h3>
+            <p>Open the Settings app on your iPhone, tap your name at the top, then tap Subscriptions. Find Aim and tap Cancel Subscription.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How do I restore my purchases on a new device?</h3>
+            <p>Open Aim, go to Settings, and tap Restore Purchases. Make sure you're signed in with the same Apple ID you used for the original purchase.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Why are my goals not syncing across devices?</h3>
+            <p>Make sure you're signed in with the same account (Apple ID or Google) on both devices. Anonymous accounts do not sync across devices. Sign in from the Settings tab to enable sync.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is my data private?</h3>
+            <p>Yes. Your goals and personal data are stored securely and are never shared with third parties. AI processing is used only to generate your personalized plans. See our <a href="/aim/privacy">Privacy Policy</a> for details.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How does the free tier work?</h3>
+            <p>The free tier includes 3 goal generations and up to 2 active goals. Upgrade to Premium for unlimited goals, unlimited generations, and milestone regeneration.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I request a refund?</h3>
+            <p>Subscriptions are managed by Apple. To request a refund, visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> and follow the instructions for your purchase.</p>
+        </div>
+
+        <h2>Legal</h2>
+        <div class="links">
+            <a href="/aim/terms">Terms of Service</a>
+            <a href="/aim/privacy">Privacy Policy</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Cognitive Intelligence Development. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
