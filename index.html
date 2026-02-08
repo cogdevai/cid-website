@@ -746,6 +746,134 @@
             letter-spacing: 0.05em;
         }
 
+        /* Products Section */
+        .products {
+            background: var(--bg-secondary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--neural-blue));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(196, 255, 90, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-dim), rgba(74, 158, 255, 0.1));
+            border-radius: 1.25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .product-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-tagline {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .product-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-feature {
+            padding: 0.4rem 0.8rem;
+            background: var(--accent-dim);
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.03em;
+        }
+
+        .product-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .product-link:hover {
+            color: var(--accent);
+        }
+
+        .product-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .app-store-badge {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
         /* Founder Section */
         .founder {
             background: var(--bg-secondary);
@@ -1110,7 +1238,8 @@
         @media (max-width: 1024px) {
             .philosophy-grid,
             .approach-cards,
-            .services-grid {
+            .services-grid,
+            .products-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1291,6 +1420,25 @@
 
             .team-intro p {
                 font-size: 1rem;
+            }
+
+            /* Products mobile */
+            .product-card {
+                padding: 1.75rem;
+            }
+
+            .product-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .product-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .product-card p {
+                font-size: 0.9rem;
             }
 
             /* Services mobile */
@@ -1478,6 +1626,7 @@
             <li><a href="#approach">Approach</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
         </ul>
         <a href="#contact" class="nav-cta">Start a Project</a>
         <button class="mobile-menu-btn" aria-label="Menu">
@@ -1493,6 +1642,7 @@
         <a href="#approach">Approach</a>
         <a href="#team">Team</a>
         <a href="#services">Services</a>
+        <a href="#products">Products</a>
         <a href="#contact" class="nav-cta">Start a Project</a>
     </div>
 
@@ -1638,6 +1788,38 @@
         </div>
     </section>
 
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="reveal">
+            <span class="section-label">Our Products</span>
+            <h2 class="section-title">Intelligence in <em>your hands</em></h2>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-icon">🎯</div>
+                <h3>Aim App</h3>
+                <p class="product-tagline">Reach your goals with AI-powered planning</p>
+                <p>Transform your ambitions into achievable milestones. Aim uses cognitive science and AI to create personalized goal plans, breaking down complex aspirations into daily actionable steps that keep you motivated and on track.</p>
+                <div class="product-features">
+                    <span class="product-feature">AI Goal Planning</span>
+                    <span class="product-feature">Daily Tasks</span>
+                    <span class="product-feature">Progress Tracking</span>
+                    <span class="product-feature">Smart Reminders</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://apps.apple.com/app/aim-reach-your-goals/id6738795774" class="product-link" target="_blank">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        App Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Mission Statement -->
     <section class="mission">
         <div class="reveal">
@@ -1759,12 +1941,9 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Resources</h4>
+                <h4>Products</h4>
                 <ul>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">Publications</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="https://apps.apple.com/app/aim-reach-your-goals/id6738795774" target="_blank">Aim App</a></li>
                 </ul>
             </div>
         </div>
