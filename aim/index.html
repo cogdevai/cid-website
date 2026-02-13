@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim — Reach Your Goals with AI</title>
+    <meta name="description" content="Aim uses AI to break your goals into personalized milestones and daily tasks. Set a goal, get a plan, achieve anything.">
+    <link rel="icon" type="image/png" href="images/app-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-elevated: #0a0a0f;
+            --bg-card: #111118;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-muted: #48484a;
+            --accent: #2dd4bf;
+            --accent-purple: #a78bfa;
+            --accent-glow: rgba(45, 212, 191, 0.15);
+            --accent-glow-strong: rgba(45, 212, 191, 0.3);
+            --border: rgba(255, 255, 255, 0.08);
+            --gradient-accent: linear-gradient(135deg, #2dd4bf, #a78bfa);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── Star Background ─── */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ─── Navigation ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        .nav-logo span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem;
+            background: var(--text);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: var(--accent-glow);
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            animation: fadeUp 0.8s ease backwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3.5rem, 10vw, 7.5rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease 0.15s backwards;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            max-width: 520px;
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            animation: fadeUp 0.8s ease 0.3s backwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            animation: fadeUp 0.8s ease 0.45s backwards;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--text);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .hero-phone {
+            margin-top: 5rem;
+            position: relative;
+            animation: fadeUp 1s ease 0.6s backwards;
+        }
+
+        .hero-phone img {
+            width: 280px;
+            border-radius: 32px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 40px 100px rgba(0, 0, 0, 0.6),
+                0 0 80px var(--accent-glow);
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Scroll Indicator ─── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeUp 0.8s ease 1s backwards;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--text-muted), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ─── Section Shared ─── */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        /* ─── How It Works ─── */
+        .how-it-works {
+            background: var(--bg);
+        }
+
+        .steps {
+            display: grid;
+            gap: 6rem;
+            margin-top: 5rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .step:nth-child(even) .step-visual {
+            order: -1;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .step-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .step-visual img {
+            width: 100%;
+            max-width: 360px;
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.04),
+                0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ─── Features Grid ─── */
+        .features {
+            background: var(--bg-elevated);
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .features-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(45, 212, 191, 0.15);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ─── App Showcase (screenshot gallery) ─── */
+        .showcase {
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .showcase-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .showcase-scroll {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .showcase-scroll img {
+            height: 480px;
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.04),
+                0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .showcase-scroll img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ─── Pricing ─── */
+        .pricing {
+            background: var(--bg-elevated);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 3rem 2.5rem;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: rgba(45, 212, 191, 0.3);
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.3rem 1rem;
+            background: var(--gradient-accent);
+            color: var(--bg);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: 100px;
+        }
+
+        .pricing-tier {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-price span {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232dd4bf' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn.outline {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .pricing-btn.outline:hover {
+            border-color: var(--text-secondary);
+        }
+
+        .pricing-btn.filled {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .pricing-btn.filled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+        }
+
+        /* ─── Final CTA ─── */
+        .final-cta {
+            text-align: center;
+            padding: 10rem 2rem;
+            position: relative;
+        }
+
+        .final-cta-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .final-cta p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .final-cta .hero-cta {
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-left img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+
+        .footer-left span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-secondary);
+        }
+
+        /* ─── Fade-in on scroll ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Mobile ─── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.25rem; }
+
+            .nav-links { display: none; }
+
+            .mobile-toggle { display: block; }
+
+            .mobile-nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--bg);
+                z-index: 99;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+
+            .mobile-nav a {
+                color: var(--text);
+                text-decoration: none;
+                font-size: 1.25rem;
+                font-family: 'Instrument Serif', serif;
+            }
+
+            .hero { padding: 7rem 1.5rem 3rem; }
+
+            .hero-phone img { width: 220px; border-radius: 24px; }
+
+            section { padding: 5rem 1.5rem; }
+
+            .step {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step:nth-child(even) .step-visual {
+                order: 0;
+            }
+
+            .step-visual img {
+                max-width: 260px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-scroll img {
+                height: 320px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-cta { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Stars Background -->
+<div class="stars" id="stars"></div>
+
+<!-- Mobile Nav Overlay -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="#how-it-works" onclick="closeMobile()">How It Works</a>
+    <a href="#features" onclick="closeMobile()">Features</a>
+    <a href="#pricing" onclick="closeMobile()">Pricing</a>
+    <a href="support/" onclick="closeMobile()">Support</a>
+    <a class="nav-cta" href="#download" onclick="closeMobile()">Download</a>
+</div>
+
+<!-- Navigation -->
+<nav>
+    <a class="nav-logo" href="./">
+        <img src="images/app-icon.png" alt="Aim">
+        <span>Aim</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="support/">Support</a></li>
+        <li><a class="nav-cta" href="#download">Download</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge">Powered by AI</div>
+    <h1>Set a goal.<br>Aim makes <em>the plan.</em></h1>
+    <p class="hero-sub">AI-powered goal achievement that breaks your ambitions into personalized milestones and daily tasks. Just tell Aim what you want to achieve.</p>
+    <div class="hero-cta">
+        <a class="btn-primary" href="#download">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Download on iOS
+        </a>
+        <a class="btn-secondary" href="#how-it-works">See how it works</a>
+    </div>
+    <div class="hero-phone">
+        <div class="hero-glow"></div>
+        <img src="images/screenshot-settings.png" alt="Aim app">
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+        <div class="reveal">
+            <div class="section-label">How It Works</div>
+            <h2 class="section-title">From ambition to <em>action</em>,<br>in four steps</h2>
+            <p class="section-desc">Aim uses behavioral science and AI to create a plan that actually fits your life. No generic advice — just a roadmap built for you.</p>
+        </div>
+
+        <div class="steps">
+            <!-- Step 1 -->
+            <div class="step reveal">
+                <div class="step-content">
+                    <div class="step-number">1</div>
+                    <h3>Name your goal</h3>
+                    <p>Type any goal — learn a language, run a marathon, launch a business. Add context about your situation so Aim can personalize everything.</p>
+                </div>
+                <div class="step-visual">
+                    <img src="images/screenshot-home.png" alt="Enter your goal in Aim">
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step reveal">
+                <div class="step-content">
+                    <div class="step-number">2</div>
+                    <h3>Answer a few questions</h3>
+                    <p>Aim's AI asks about your timeline, availability, and preferences. It uses this to craft a plan grounded in behavioral science — not guesswork.</p>
+                </div>
+                <div class="step-visual">
+                    <img src="images/screenshot-ai-chat.png" alt="AI conversation in Aim">
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step reveal">
+                <div class="step-content">
+                    <div class="step-number">3</div>
+                    <h3>Get your personalized plan</h3>
+                    <p>Aim generates a structured roadmap of milestones, each broken into concrete subtasks with clear timelines. Your entire journey, mapped out.</p>
+                </div>
+                <div class="step-visual">
+                    <img src="images/screenshot-plan.png" alt="Your personalized plan in Aim">
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step reveal">
+                <div class="step-content">
+                    <div class="step-number">4</div>
+                    <h3>Track and achieve</h3>
+                    <p>Check off subtasks daily, watch your progress build milestone by milestone. Aim keeps you moving forward with clarity and momentum.</p>
+                </div>
+                <div class="step-visual">
+                    <img src="images/screenshot-milestone.png" alt="Track milestones in Aim">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+    <div class="section-inner">
+        <div class="features-header reveal">
+            <div class="section-label">Features</div>
+            <h2 class="section-title">Everything you need to<br><em>reach your goals</em></h2>
+            <p class="section-desc">Built with the tools and intelligence to keep you on track, no matter what you're working toward.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M12 2a4 4 0 0 0-4 4c0 2.05.77 3.6 1.87 4.68A7 7 0 0 0 5 17h14a7 7 0 0 0-4.87-6.32C15.23 9.6 16 8.05 16 6a4 4 0 0 0-4-4z"/><line x1="12" y1="17" x2="12" y2="22"/></svg>
+                </div>
+                <h3>AI-Generated Milestones</h3>
+                <p>Claude AI creates a step-by-step roadmap tailored to your goal, timeline, and personal context.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+                </div>
+                <h3>Daily Subtasks</h3>
+                <p>Each milestone breaks into actionable daily tasks so you always know exactly what to do next.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <h3>Conversational Flow</h3>
+                <p>A natural chat-based experience that understands your needs and creates plans through conversation.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Flexible Timelines</h3>
+                <p>Choose from 1 week to 1 year — or set a custom timeline. Aim adapts your plan to fit your pace.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>Progress Tracking</h3>
+                <p>Visual progress across milestones and subtasks. See how far you've come and what's left.</p>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Behavioral Science</h3>
+                <p>Plans are grounded in proven goal-setting research — structured to maximize your chance of success.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- App Showcase -->
+<section class="showcase" id="showcase">
+    <div class="section-inner">
+        <div class="showcase-header reveal">
+            <div class="section-label">The App</div>
+            <h2 class="section-title">Designed to keep you <em>focused</em></h2>
+            <p class="section-desc">A minimal, distraction-free interface that puts your goals front and center.</p>
+        </div>
+        <div class="showcase-scroll reveal">
+            <img src="images/screenshot-home.png" alt="Aim home screen">
+            <img src="images/screenshot-timeline.png" alt="Aim timeline selection">
+            <img src="images/screenshot-plan.png" alt="Aim goal plan">
+            <img src="images/screenshot-milestone.png" alt="Aim milestone detail">
+            <img src="images/screenshot-settings.png" alt="Aim settings">
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+    <div class="section-inner">
+        <div class="pricing-header reveal">
+            <div class="section-label">Pricing</div>
+            <h2 class="section-title">Start free. <em>Upgrade when ready.</em></h2>
+            <p class="section-desc">Aim is free to try. Unlock unlimited potential with Premium.</p>
+        </div>
+
+        <div class="pricing-cards">
+            <div class="pricing-card reveal">
+                <div class="pricing-tier">Free</div>
+                <div class="pricing-price">$0</div>
+                <div class="pricing-desc">Get started, no commitment</div>
+                <ul class="pricing-features">
+                    <li>3 goal generations</li>
+                    <li>2 active goals</li>
+                    <li>AI-powered milestones</li>
+                    <li>Daily subtasks</li>
+                </ul>
+                <a class="pricing-btn outline" href="#download">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured reveal">
+                <div class="pricing-tier">Premium</div>
+                <div class="pricing-price">$9.99 <span>/ month</span></div>
+                <div class="pricing-desc">Or $59.99/year — save 50%</div>
+                <ul class="pricing-features">
+                    <li>Unlimited goal generations</li>
+                    <li>Unlimited active goals</li>
+                    <li>Regenerate milestones anytime</li>
+                    <li>Priority AI processing</li>
+                </ul>
+                <a class="pricing-btn filled" href="#download">Upgrade to Premium</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="download">
+    <div class="final-cta-glow"></div>
+    <h2>Ready to reach<br>your goals?</h2>
+    <p>Download Aim and let AI build your roadmap to success.</p>
+    <div class="hero-cta">
+        <a class="btn-primary" href="#">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Download on the App Store
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <img src="images/app-icon.png" alt="Aim">
+            <span>&copy; 2026 Cognitive Intelligence Development</span>
+        </div>
+        <ul class="footer-links">
+            <li><a href="../">CID Home</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="support/">Support</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script>
+    // Generate stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+        star.style.setProperty('--delay', (Math.random() * 4) + 's');
+        if (Math.random() > 0.7) {
+            star.style.width = '3px';
+            star.style.height = '3px';
+            star.style.background = 'rgba(255,255,255,0.6)';
+        }
+        starsEl.appendChild(star);
+    }
+
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    toggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        toggle.classList.toggle('active');
+    });
+    function closeMobile() {
+        mobileNav.classList.remove('active');
+        toggle.classList.remove('active');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav background on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(0, 0, 0, 0.85)';
+        } else {
+            nav.style.background = 'rgba(0, 0, 0, 0.6)';
+        }
+    });
+</script>
+</body>
+</html>
