@@ -3,9 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aim — Reach Your Goals with AI</title>
-    <meta name="description" content="Aim uses AI to break your goals into personalized milestones and daily tasks. Set a goal, get a plan, achieve anything.">
+    <title>Aim — AI Goal Planner & Daily Task Tracker App for iOS</title>
+    <meta name="description" content="Aim is an AI-powered goal planning app that breaks your goals into personalized milestones and daily tasks. Set a goal, get a step-by-step plan, and track your progress. Free on iOS.">
+    <meta name="keywords" content="AI goal planner, goal tracking app, AI task planner, milestone tracker, daily task app, goal setting app, iOS goal app, personal goal planner, AI productivity app">
+    <link rel="canonical" href="https://www.cogdev.ai/aim/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cogdev.ai/aim/">
+    <meta property="og:title" content="Aim — AI Goal Planner & Daily Task Tracker">
+    <meta property="og:description" content="Set any goal and let AI build your personalized roadmap. Aim breaks ambitions into milestones and daily tasks so you always know what to do next.">
+    <meta property="og:image" content="https://www.cogdev.ai/aim/images/og-image.png">
+    <meta property="og:site_name" content="Aim by CID">
+
+    <!-- X (formerly Twitter) Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aim — AI Goal Planner & Daily Task Tracker">
+    <meta name="twitter:description" content="Set any goal and let AI build your personalized roadmap. Milestones, daily tasks, and progress tracking — all powered by AI.">
+    <meta name="twitter:image" content="https://www.cogdev.ai/aim/images/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Aim",
+      "operatingSystem": "iOS",
+      "applicationCategory": "ProductivityApplication",
+      "description": "AI-powered goal planning app that breaks your goals into personalized milestones and daily tasks.",
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free tier with 3 goal generations and 2 active goals"
+        },
+        {
+          "@type": "Offer",
+          "price": "9.99",
+          "priceCurrency": "USD",
+          "description": "Premium monthly — unlimited goals and generations",
+          "billingIncrement": 1,
+          "unitCode": "MON"
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Cognitive Intelligence Development",
+        "url": "https://www.cogdev.ai"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does Aim create a goal plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aim uses AI to understand your goal, timeline, and daily availability, then generates a personalized roadmap of milestones broken into daily subtasks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Aim free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Aim is free to download with 3 goal generations and 2 active goals. Premium unlocks unlimited goals for $9.99/month or $59.99/year."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kind of goals can I set in Aim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any personal goal — learn a language, run a marathon, launch a business, read more books, build a habit. Aim adapts its plan to your specific goal and timeline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Aim different from other goal apps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most goal apps just let you write down goals. Aim uses AI to generate a complete, structured plan with milestones and daily subtasks — so you always know exactly what to do next."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What AI does Aim use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aim is powered by Claude AI from Anthropic, combined with behavioral science principles to create plans that are realistic and achievable."
+          }
+        }
+      ]
+    }
+    </script>
+
     <link rel="icon" type="image/png" href="images/app-icon.png">
+    <link rel="apple-touch-icon" href="images/app-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -690,6 +794,43 @@
             box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
         }
 
+        /* ─── FAQ ─── */
+        .faq {
+            background: var(--bg);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .faq-item h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
         /* ─── Final CTA ─── */
         .final-cta {
             text-align: center;
@@ -906,6 +1047,7 @@
     </button>
 </nav>
 
+<main>
 <!-- Hero -->
 <section class="hero">
     <div class="hero-badge">Powered by AI</div>
@@ -920,7 +1062,7 @@
     </div>
     <div class="hero-phone">
         <div class="hero-glow"></div>
-        <img src="images/screenshot-settings.png" alt="Aim app">
+        <img src="images/screenshot-home.png" alt="Aim AI goal planner app - home screen showing active goals and daily tasks">
     </div>
     <div class="scroll-indicator">
         <span>Scroll</span>
@@ -946,7 +1088,7 @@
                     <p>Type any goal — learn a language, run a marathon, launch a business. Add context about your situation so Aim can personalize everything.</p>
                 </div>
                 <div class="step-visual">
-                    <img src="images/screenshot-home.png" alt="Enter your goal in Aim">
+                    <img src="images/screenshot-home.png" alt="Set a personal goal in Aim - AI goal planning app for iOS">
                 </div>
             </div>
 
@@ -958,7 +1100,7 @@
                     <p>Aim's AI asks about your timeline, availability, and preferences. It uses this to craft a plan grounded in behavioral science — not guesswork.</p>
                 </div>
                 <div class="step-visual">
-                    <img src="images/screenshot-ai-chat.png" alt="AI conversation in Aim">
+                    <img src="images/screenshot-ai-chat.png" alt="AI chat creates personalized goal plan based on your timeline and availability">
                 </div>
             </div>
 
@@ -970,7 +1112,7 @@
                     <p>Aim generates a structured roadmap of milestones, each broken into concrete subtasks with clear timelines. Your entire journey, mapped out.</p>
                 </div>
                 <div class="step-visual">
-                    <img src="images/screenshot-plan.png" alt="Your personalized plan in Aim">
+                    <img src="images/screenshot-plan.png" alt="AI-generated milestone roadmap with structured timeline in Aim app">
                 </div>
             </div>
 
@@ -982,7 +1124,7 @@
                     <p>Check off subtasks daily, watch your progress build milestone by milestone. Aim keeps you moving forward with clarity and momentum.</p>
                 </div>
                 <div class="step-visual">
-                    <img src="images/screenshot-milestone.png" alt="Track milestones in Aim">
+                    <img src="images/screenshot-milestone.png" alt="Track daily subtasks and milestone progress in Aim goal tracker">
                 </div>
             </div>
         </div>
@@ -1059,11 +1201,11 @@
             <p class="section-desc">A minimal, distraction-free interface that puts your goals front and center.</p>
         </div>
         <div class="showcase-scroll reveal">
-            <img src="images/screenshot-home.png" alt="Aim home screen">
-            <img src="images/screenshot-timeline.png" alt="Aim timeline selection">
-            <img src="images/screenshot-plan.png" alt="Aim goal plan">
-            <img src="images/screenshot-milestone.png" alt="Aim milestone detail">
-            <img src="images/screenshot-settings.png" alt="Aim settings">
+            <img src="images/screenshot-home.png" alt="Aim app home screen with active goals and daily task list">
+            <img src="images/screenshot-timeline.png" alt="Choose your goal timeline - flexible from 1 week to 1 year">
+            <img src="images/screenshot-plan.png" alt="AI-generated milestone plan with structured goal roadmap">
+            <img src="images/screenshot-milestone.png" alt="Milestone detail view with daily subtasks and progress tracking">
+            <img src="images/screenshot-settings.png" alt="Aim app settings and profile screen">
         </div>
     </div>
 </section>
@@ -1107,6 +1249,38 @@
     </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="section-inner">
+        <div class="faq-header reveal">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Common <em>questions</em></h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <h3>How does Aim create a goal plan?</h3>
+                <p>Aim uses AI to understand your goal, timeline, and daily availability, then generates a personalized roadmap of milestones broken into daily subtasks.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>Is Aim free to use?</h3>
+                <p>Yes. Aim is free to download with 3 goal generations and 2 active goals. Premium unlocks unlimited goals for $9.99/month or $59.99/year.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>What kind of goals can I set in Aim?</h3>
+                <p>Any personal goal — learn a language, run a marathon, launch a business, read more books, build a habit. Aim adapts its plan to your specific goal and timeline.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>How is Aim different from other goal apps?</h3>
+                <p>Most goal apps just let you write down goals. Aim uses AI to generate a complete, structured plan with milestones and daily subtasks — so you always know exactly what to do next.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h3>What AI does Aim use?</h3>
+                <p>Aim is powered by Claude AI from Anthropic, combined with behavioral science principles to create plans that are realistic and achievable.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Final CTA -->
 <section class="final-cta" id="download">
     <div class="final-cta-glow"></div>
@@ -1119,6 +1293,8 @@
         </a>
     </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer>
