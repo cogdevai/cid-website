@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinyTaste — Personalised Baby Weaning & Nutrition Tracker for iOS</title>
+    <meta name="description" content="TinyTaste is an AI-powered baby weaning companion that tracks meals, milk feeds, and nutrition. Get personalised recipes, developmental insights, and a nutrition wheel that shows exactly what your baby needs.">
+    <meta name="keywords" content="baby weaning app, baby food tracker, weaning tracker, baby nutrition app, first foods app, baby meal planner, infant nutrition, solid starts, baby led weaning, complementary feeding">
+    <link rel="canonical" href="https://www.cogdev.ai/tinytaste/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cogdev.ai/tinytaste/">
+    <meta property="og:title" content="TinyTaste — Personalised Baby Weaning Companion">
+    <meta property="og:description" content="Track meals, spot nutrition gaps, get AI-powered recipes and developmental insights. For parents who want to support their kids' nutrition journey.">
+    <meta property="og:site_name" content="TinyTaste by CID">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TinyTaste — Personalised Baby Weaning Companion">
+    <meta name="twitter:description" content="Track meals, spot nutrition gaps, get AI recipes. The smartest weaning app for modern parents.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "TinyTaste",
+      "operatingSystem": "iOS",
+      "applicationCategory": "HealthApplication",
+      "description": "AI-powered baby weaning companion that tracks meals, milk feeds, nutrition gaps, and developmental milestones.",
+      "offers": [
+        {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free tier with 3 AI recipe generations and 3 AI insight generations"
+        }
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "Cognitive Intelligence Development",
+        "url": "https://www.cogdev.ai"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does TinyTaste do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TinyTaste tracks your baby's meals, milk feeds, and supplements. It shows a nutrition wheel of what food groups and nutrients baby has had, provides personalised AI recipes, and gives developmental insights based on your baby's age."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is TinyTaste free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. TinyTaste is free to download with 3 AI recipe generations and 3 AI insight generations. Premium unlocks unlimited AI features."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What age is TinyTaste for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TinyTaste is designed for babies from 4 months to 2+ years — covering the entire weaning journey from first purees to family meals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the nutrition advice evidence-based?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. All nutrition guidance in TinyTaste is based on peer-reviewed research from the AAP, WHO, NHS, and EFSA, with references from 2020 or later."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: linear-gradient(165deg, #C4868E 0%, #D4A89A 25%, #C99878 45%, #A87A9E 70%, #8A7AAC 100%);
+            --text: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.45);
+            --accent: #C8F547;
+            --accent-dark: #1A1A2E;
+            --glass: rgba(255,255,255,0.24);
+            --glass-border: rgba(255,255,255,0.22);
+            --peach: #F0A882;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 24px 40px;
+        }
+        .header .pill {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            background: var(--peach);
+            color: var(--accent-dark);
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .header .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
+        .header .green-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 100px;
+            background: var(--accent);
+            color: var(--accent-dark);
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* Features */
+        .features {
+            padding: 40px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            padding: 0 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            backdrop-filter: blur(20px);
+        }
+        .feature-card .emoji { font-size: 28px; margin-bottom: 12px; }
+        .feature-card h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .feature-card .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 100px;
+            background: var(--accent);
+            color: var(--accent-dark);
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 7px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 60px 24px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 100px;
+            background: var(--accent);
+            color: var(--accent-dark);
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(200,245,71,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 12px;
+        }
+        .footer a:hover { color: var(--text); }
+        .footer .brand {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        /* Evidence */
+        .evidence {
+            text-align: center;
+            padding: 20px 24px 40px;
+        }
+        .evidence p {
+            font-size: 12px;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="pill">Personalised Weaning Companion</div>
+    <h1>TinyTaste</h1>
+    <p class="subtitle">For parents who want to support their kids' nutrition journey. Track meals, spot nutrition gaps, get AI-powered recipes and developmental insights.</p>
+    <a href="#" class="green-pill">Download on the App Store</a>
+</div>
+
+<div class="features">
+    <p class="section-title">What TinyTaste Does</p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="emoji">🎯</div>
+            <h3>Nutrition Wheel</h3>
+            <p>See exactly which food groups and nutrients your baby has had today with a beautiful dual-ring nutrition wheel. Inner ring tracks food groups, outer ring tracks key nutrients.</p>
+            <span class="tag">Visual Tracking</span>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🍳</div>
+            <h3>AI Recipes</h3>
+            <p>Get personalised recipe suggestions based on what your baby loves, what they need nutritionally, and their current weaning stage. Labelled by meal time.</p>
+            <span class="tag">AI Powered</span>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🧠</div>
+            <h3>Developmental Insights</h3>
+            <p>Daily insights about your baby's developmental leaps, body changes, weaning tips, and social eating milestones — all personalised to their exact age.</p>
+            <span class="tag">Evidence Based</span>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🍼</div>
+            <h3>Milk Tracking</h3>
+            <p>Log breast and bottle feeds with a built-in timer. See a feed timeline, daily summary, and beautiful 3D cylinder charts showing intake patterns.</p>
+            <span class="tag">Breast + Bottle</span>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">💊</div>
+            <h3>Supplement Tracker</h3>
+            <p>Create custom vitamin and supplement tags. Tap to mark as given each day. Never forget Vitamin D drops again.</p>
+            <span class="tag">Daily Reminders</span>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">✨</div>
+            <h3>Food Personality</h3>
+            <p>Discover your baby's food personality based on their eating patterns. A gorgeous shareable card perfect for Instagram stories.</p>
+            <span class="tag">Shareable</span>
+        </div>
+    </div>
+</div>
+
+<div class="evidence">
+    <p>All nutrition guidance based on peer-reviewed research from the AAP, WHO, NHS, and EFSA. References from 2020 or later. Built by parents, for parents.</p>
+</div>
+
+<div class="cta">
+    <a href="#" class="cta-button">+ Download TinyTaste</a>
+</div>
+
+<div class="footer">
+    <div>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="support/">Support</a>
+    </div>
+    <p class="brand">TinyTaste by Cognitive Intelligence Development</p>
+</div>
+
+</body>
+</html>
