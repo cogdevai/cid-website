@@ -23,7 +23,7 @@
 <div class="container">
     <a href="./" class="back">&larr; Back to TinyTaste</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: March 20, 2026</p>
+    <p class="updated">Last updated: April 1, 2026</p>
 
     <h2>1. Introduction</h2>
     <p>TinyTaste ("the App") is operated by Cognitive Intelligence Development ("CID", "we", "us"). We respect your privacy and are committed to protecting your personal data. This policy explains how we collect, use, and safeguard your information.</p>
@@ -48,31 +48,42 @@
     </ul>
 
     <h2>4. Data Storage</h2>
-    <p>Your food logs, milk logs, journal entries, and supplement data are stored locally on your device using Apple's SwiftData framework. If you sign in, subscription status is stored in Google Firebase Firestore. We do not sell your data to third parties.</p>
+    <p>Your food logs, milk logs, journal entries, and supplement data are stored <strong>locally on your device</strong> using Apple's SwiftData framework, protected by iOS Data Protection (encrypted at rest). This data is never uploaded to or stored on our servers.</p>
+    <p>If you sign in, only your subscription status and usage counts are stored in Google Firebase Firestore. We do not store your baby's name, food logs, or any health data on our servers. We do not sell your data to third parties.</p>
 
-    <h2>5. AI Processing</h2>
-    <p>When you use intelligent features (recipe generation, insights), your baby's food log data is sent to our backend server for processing via Anthropic's Claude. This data is used solely to generate personalised content and is not stored on their servers after processing. Anthropic does not use your data for training.</p>
+    <h2>5. User Identity & Security</h2>
+    <p>Your account is identified internally by a Firebase Authentication user ID. This ID is <strong>never exposed to you or shared externally</strong>.</p>
+    <p>For support purposes, we generate a <strong>Support ID</strong> — a cryptographic code created using a one-way keyed hash (HMAC-SHA256) of your user ID with a secret key. This Support ID:</p>
+    <ul>
+        <li>Cannot be reversed to reveal your actual user ID</li>
+        <li>Cannot be used to access your account or personal data</li>
+        <li>Is only used to help us locate your account if you contact support</li>
+    </ul>
+    <p>In our backend logs, user activity is recorded using a separate one-way hash of your user ID. Raw user IDs are never written to logs, displayed in admin tools, or shared with third parties.</p>
 
-    <h2>6. Third-Party Services</h2>
+    <h2>6. AI Processing</h2>
+    <p>When you use intelligent features (recipe generation, insights), your baby's food log data is sent to our backend server over an encrypted connection (HTTPS/TLS) for processing via Anthropic's Claude AI. This data is used solely to generate personalised content and is <strong>not stored</strong> on our servers or Anthropic's servers after the response is returned. Anthropic does not use your data for model training.</p>
+
+    <h2>7. Third-Party Services</h2>
     <ul>
         <li><strong>Firebase:</strong> Authentication, Firestore (subscription data), Analytics, Crashlytics</li>
         <li><strong>Anthropic Claude AI:</strong> Recipe and insight generation</li>
         <li><strong>Apple:</strong> Sign in with Apple, In-App Purchases, App Store</li>
     </ul>
 
-    <h2>7. Children's Privacy</h2>
+    <h2>8. Children's Privacy</h2>
     <p>TinyTaste is designed for parents and caregivers, not for use by children directly. The baby profile data you enter is under your control as the parent. We do not knowingly collect data from children under 13.</p>
 
-    <h2>8. Data Deletion</h2>
+    <h2>9. Data Deletion</h2>
     <p>You can delete your account and all associated data at any time through Settings > Delete Account in the App. This permanently removes your data from both the device and our servers.</p>
 
-    <h2>9. Your Rights</h2>
+    <h2>10. Your Rights</h2>
     <p>You have the right to access, correct, or delete your personal data. Contact us at <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a> for any data requests.</p>
 
-    <h2>10. Changes</h2>
+    <h2>11. Changes</h2>
     <p>We may update this policy from time to time. We will notify you of significant changes through the App.</p>
 
-    <h2>11. Contact</h2>
+    <h2>12. Contact</h2>
     <p>Cognitive Intelligence Development<br>Email: <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a><br>Website: <a href="https://www.cogdev.ai">cogdev.ai</a></p>
 </div>
 </body>
