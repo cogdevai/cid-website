@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CID · AI &amp; ML Studio for Women Founders | Cognitive Intelligence Development</title>
-    <meta name="description" content="CID is the AI &amp; ML studio for women founders and apps for women, families and kids. Founded by Benan D. Allan, PhD — cognitive scientist, ML engineer and mom. You bring the dream; I build the intelligence that makes it real, with ethics and people first.">
+    <meta name="description" content="CID builds the AI and ML for women founders, from a quick proof of concept to a full, scaled product. Apps for women, families and kids. Founded by Benan D. Allan, PhD, cognitive scientist, ML engineer and mom. Ethics and people first.">
     <meta name="keywords" content="AI for women founders, ML consultant women, women founder tech lead, AI apps for women, machine learning for startups, femtech AI, AI consultant, on-device ML, ethical AI">
     <meta name="author" content="Benan D. Allan">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -16,15 +16,15 @@
     <meta property="og:site_name" content="CID · Cognitive Intelligence Development">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="CID · AI &amp; ML Studio for Women Founders">
-    <meta property="og:description" content="You've got the dream; I build the intelligence that makes it real — with ethics, a human touch, and always in support of women. Apps for women, families and kids.">
+    <meta property="og:description" content="You've got the dream. I build the AI and ML that makes it real, from a quick proof of concept to full scale. Apps for women, families and kids. Ethics and people first.">
     <meta property="og:image" content="https://cogdev.ai/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="CID — AI &amp; ML studio for women founders. Let's make your AI project come true.">
+    <meta property="og:image:alt" content="CID. AI &amp; ML studio for women founders. Let's make your AI project come true.">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CID · AI &amp; ML Studio for Women Founders">
-    <meta name="twitter:description" content="You've got the dream; I build the intelligence that makes it real — with ethics, a human touch, and always in support of women.">
+    <meta name="twitter:description" content="You've got the dream. I build the AI and ML that makes it real, from a quick proof of concept to full scale. For women founders.">
     <meta name="twitter:image" content="https://cogdev.ai/og-image.png">
 
     <link rel="icon" href="/cid-logo.svg" type="image/svg+xml">
@@ -151,6 +151,15 @@
         .niche-text p strong{color:var(--ink);font-weight:600}
         .niche-text p:last-child{margin-bottom:0}
 
+        /* JOURNEY */
+        .journey{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:72px}
+        .jstep{position:relative;padding:32px 26px;border-radius:22px;background:var(--card);border:1px solid var(--ink-l);transition:transform .4s,box-shadow .4s}
+        .jstep:hover{transform:translateY(-5px);box-shadow:0 20px 44px -22px rgba(28,43,51,0.2)}
+        .jstep .jnum{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--coral-d);background:var(--coral-l);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+        .jstep h4{font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.01em;margin-bottom:9px;color:var(--ink)}
+        .jstep p{font-size:13.5px;color:var(--ink-s);line-height:1.65;font-weight:300}
+        .jstep .jarrow{position:absolute;right:-12px;top:48px;color:var(--coral);font-size:20px;font-weight:700;z-index:3}
+
         /* SERVICES */
         .svc-list{margin-top:70px;display:grid;gap:0}
         .svc-row{display:grid;grid-template-columns:80px 1fr 210px;gap:48px;padding:40px 0;border-top:1px solid var(--ink-l);align-items:center;transition:padding-left .3s}
@@ -216,6 +225,8 @@
             .niche-grid{grid-template-columns:1fr;gap:34px}
             .builds{grid-template-columns:1fr}
             .values{grid-template-columns:1fr 1fr;gap:16px}
+            .journey{grid-template-columns:1fr 1fr;gap:14px}
+            .jstep .jarrow{display:none}
             .svc-row{grid-template-columns:1fr;gap:16px;padding:30px 0;align-items:start}
             .svc-side{justify-content:flex-start}
             .nav-links{display:none;position:fixed;inset:0;background:rgba(255,253,250,0.98);flex-direction:column;justify-content:center;align-items:center;gap:28px;z-index:99}
@@ -241,6 +252,7 @@
             .hero-actions{flex-direction:column;width:100%}
             .hero-actions a{justify-content:center;width:100%}
             .values{grid-template-columns:1fr}
+            .journey{grid-template-columns:1fr}
             .contact-row{flex-direction:column;align-items:stretch;gap:10px}
             .clink{justify-content:center}
             .sec{padding:74px 20px}
@@ -271,7 +283,7 @@
     <div class="hero-inner">
         <span class="tag">AI &amp; ML studio · built for women founders</span>
         <h1>Let's make your AI project come true.</h1>
-        <p class="hero-sub">I'm Benan — a cognitive scientist, ML engineer and mom. I build the intelligence behind apps for <b>women, families and kids</b>. You've got the dream. I build the brain that makes it real — with ethics, a human touch, people and emotion first, and always, always in support of women.</p>
+        <p class="hero-sub">I'm Benan, a cognitive scientist, ML engineer and mom. I build the <b>AI and ML</b> behind apps for women, families and kids. Got the idea but not the team or funding to build the intelligence? I take your project from a <b>quick proof of concept all the way to a full, scaled product</b>. Your dream, built for real.</p>
         <div class="hero-chips">
             <span class="chip">Women founders</span>
             <span class="chip">Apps for women</span>
@@ -288,19 +300,45 @@
 <section class="sec sec-soft" id="help">
     <div class="container">
         <div class="rv">
-            <span class="sec-label">Who I'm for</span>
-            <h2 class="sec-h">You've got the vision. I build the brain.</h2>
-            <p class="sec-p">So many women come to me with a dream they can already picture clearly — and the one piece they're missing is the intelligence that makes it real.</p>
+            <span class="sec-label">For women founders</span>
+            <h2 class="sec-h">Have the idea, but not the pipeline to build the AI?</h2>
+            <p class="sec-p">You can picture it clearly: the app, the platform, the product that should exist. What you don't have is the AI and ML pipeline, the team, or the funding to build the intelligence underneath it. That's exactly where I come in.</p>
         </div>
 
         <div class="niche-grid">
             <div class="rv">
-                <p class="niche-lead">An app, a platform, a product that should exist in the world. The thing you're missing isn't ambition. It's the ML brain underneath it.</p>
+                <p class="niche-lead">CID is built by a female founder who has taken startups head to head with the big players, and won ground.</p>
             </div>
             <div class="niche-text rv">
-                <p><strong>Which data to use. What it actually means. How to turn it into intelligence</strong> that's accurate, kind, and truly yours. That's the part that's hardest to hire for and easiest to get wrong.</p>
-                <p>It's also the part I've spent my whole career building — across women's health, family and kids products. From the raw data, to the model, to the way it talks to a real person.</p>
-                <p>You don't need to become an ML engineer to build something intelligent. You just need someone who already is one, who actually listens, and who builds it <strong>with you</strong> — around your people, not around the tech.</p>
+                <p>So I know what it takes, because I've done it. I've spent my whole career building the AI brain for products in <strong>women's health, families and kids</strong>. From the raw data, to the model, to the way it talks to a real person.</p>
+                <p>You work <strong>directly with me</strong>. You explain your vision, and together we turn it into a real, working product. Something you can take to investors, to users, to market, wherever you are in the world.</p>
+                <p>We don't need to have everything in place to start. <strong>We'll build it together.</strong></p>
+            </div>
+        </div>
+
+        <div class="journey stg">
+            <div class="jstep rv" style="--i:0">
+                <div class="jnum">1</div>
+                <h4>Your idea</h4>
+                <p>You bring the vision and the world you know better than anyone. We start with a conversation about what you want to build and why.</p>
+                <span class="jarrow">&rarr;</span>
+            </div>
+            <div class="jstep rv" style="--i:1">
+                <div class="jnum">2</div>
+                <h4>Proof of concept</h4>
+                <p>I build a real, working AI core, not a mockup. The data, the model, the intelligence that proves your idea actually works.</p>
+                <span class="jarrow">&rarr;</span>
+            </div>
+            <div class="jstep rv" style="--i:2">
+                <div class="jnum">3</div>
+                <h4>Pitch-ready</h4>
+                <p>Something solid you can put in front of investors and early users. A product with a brain, not a deck full of promises.</p>
+                <span class="jarrow">&rarr;</span>
+            </div>
+            <div class="jstep rv" style="--i:3">
+                <div class="jnum">4</div>
+                <h4>Go to market</h4>
+                <p>Out into the world. Wherever you're launching, you'll have intelligence you understand, trust, and truly own.</p>
             </div>
         </div>
     </div>
@@ -320,7 +358,7 @@
                 <div class="svc-num">01</div>
                 <div class="svc-body">
                     <h3>Consultation</h3>
-                    <p>Book me by the hour. Maybe you know exactly what you want to build but not how the AI should actually work — which data, what it means, how to make it smart and safe. We'll talk it through and you'll leave with a real plan, not a pile of jargon.</p>
+                    <p>Book me by the hour. Maybe you know exactly what you want to build but not how the AI should actually work. Which data, what it means, how to make it smart and safe. We'll talk it through and you'll leave with a real plan, not a pile of jargon.</p>
                 </div>
                 <div class="svc-side"><a href="mailto:benan@cogdev.ai?subject=CID%20%E2%80%94%20Consultation" class="svc-cta">Tell me about it! &rarr;</a></div>
             </div>
@@ -329,7 +367,7 @@
                 <div class="svc-num">02</div>
                 <div class="svc-body">
                     <h3>I build your AI app, end to end</h3>
-                    <p>Want the whole thing built? I'll do it — the data, the ML brain, the model, the way it talks to your users. You get a product that actually works out in the real world, not just in a slick demo.</p>
+                    <p>Want the whole thing built? I'll do it. The data, the ML brain, the model, the way it talks to your users. You get a product that actually works out in the real world, not just in a slick demo.</p>
                 </div>
                 <div class="svc-side"><a href="mailto:benan@cogdev.ai?subject=CID%20%E2%80%94%20AI%20app%20or%20solution" class="svc-cta">Tell me about it! &rarr;</a></div>
             </div>
@@ -359,14 +397,14 @@
                 <span class="bcard-status launch">In launch</span>
                 <h3>Nar</h3>
                 <div class="btype">Women's health · iOS · On-device ML</div>
-                <p>Reads your biomarkers on device across 9 health domains and 6 hormonal life stages. Every suggestion comes from the combination of your own signals against your own baseline — never a population average.</p>
+                <p>Reads your biomarkers on device across 9 health domains and 6 hormonal life stages. Every suggestion comes from the combination of your own signals against your own baseline, never a population average.</p>
             </article>
 
             <article class="bcard rv" style="--card-c:var(--teal);--i:1">
                 <span class="bcard-status">Shipped</span>
                 <h3>TinyTaste</h3>
                 <div class="btype">Babies &amp; families · iOS</div>
-                <p>A baby weaning tracker that profiles every food against what a little one actually needs at their age. The signals behind the next-food suggestions had to be built — they don't exist in a raw food log.</p>
+                <p>A baby weaning tracker that profiles every food against what a little one actually needs at their age. The signals behind the next-food suggestions had to be built. They don't exist in a raw food log.</p>
                 <a href="/tinytaste/" class="blink">See the build &rarr;</a>
             </article>
 
@@ -382,7 +420,7 @@
                 <span class="bcard-status beta">Private beta</span>
                 <h3>Prism</h3>
                 <div class="btype">Conversation intelligence</div>
-                <p>Reads how people really feel and decide from the way they talk — not just what they say. The cognitive-science layer is the whole difference between a transcript and an understanding.</p>
+                <p>Reads how people really feel and decide from the way they talk, not just what they say. The cognitive-science layer is the whole difference between a transcript and an understanding.</p>
             </article>
         </div>
     </div>
@@ -393,7 +431,7 @@
         <div class="rv" style="text-align:center;max-width:720px;margin:0 auto 60px">
             <span class="sec-label">What I promise</span>
             <h2 class="sec-h">How I work is the whole point.</h2>
-            <p class="sec-p" style="margin:0 auto">Tech is never neutral. These aren't extras I bolt on at the end — they're the reason to pick me at all.</p>
+            <p class="sec-p" style="margin:0 auto">Tech is never neutral. These aren't extras I bolt on at the end. They're the reason to pick me at all.</p>
         </div>
 
         <div class="values stg">
@@ -423,7 +461,7 @@
         <div class="rv">
             <span class="sec-label">Who you'll actually work with</span>
             <h2 class="sec-h">A scientist, an engineer, and a mom.</h2>
-            <p class="sec-p">When you work with CID, you work with me — not a sales team, not a junior someone. If a project needs a specialist, they join, and you meet them first.</p>
+            <p class="sec-p">When you work with CID, you work with me. Not a sales team, not a junior someone. If a project needs a specialist, they join, and you meet them first.</p>
         </div>
 
         <div class="founder-card rv">
@@ -431,8 +469,8 @@
             <div class="founder-info">
                 <h3>Benan D. Allan, PhD</h3>
                 <div class="ftitle">Founder · CID</div>
-                <p>I did my PhD in brain, mind and computer science between Padova and Edinburgh. I built the AI team at Stardust from nothing — women's health, millions of users — and since then I've shipped apps for women (<strong>Nar</strong>), for babies and families (<strong>TinyTaste</strong>), and for the goals we set ourselves (<strong>Aim</strong>).</p>
-                <p>I've spent my career building intelligence around women, families and kids. I've also got my own kids — so this isn't a market to me, it's my life. That's why I put people and emotion first, and why I'd never build anything I wouldn't happily hand to my own family.</p>
+                <p>I did my PhD in brain, mind and computer science between Padova and Edinburgh. I built the AI team at Stardust from nothing, in women's health, for millions of users. Since then I've shipped apps for women (<strong>Nar</strong>), for babies and families (<strong>TinyTaste</strong>), and for the goals we set ourselves (<strong>Aim</strong>).</p>
+                <p>I've spent my career building intelligence around women, families and kids. I've also got my own kids, so this isn't a market to me, it's my life. That's why I put people and emotion first, and why I'd never build anything I wouldn't happily hand to my own family.</p>
                 <div class="founder-links">
                     <a href="https://www.benandemir.com" target="_blank" rel="noopener" class="flink">benandemir.com &rarr;</a>
                     <a href="https://www.benandemir.com/ml/" target="_blank" rel="noopener" class="flink">ML portfolio &rarr;</a>
@@ -449,7 +487,7 @@
     <div class="container">
         <span class="sec-label">Say hi</span>
         <h2 class="sec-h">Tell me about your dream.</h2>
-        <p class="sec-p" style="margin-left:auto;margin-right:auto">If you've got a vision and you need the intelligence to make it real — or you just want to know whether your idea is even buildable — write to me. I read and reply to my own emails, promise.</p>
+        <p class="sec-p" style="margin-left:auto;margin-right:auto">If you've got a vision and you need the AI to make it real, or you just want to know whether your idea is even buildable, write to me. I read and reply to my own emails, promise.</p>
         <div class="contact-row">
             <a href="mailto:benan@cogdev.ai?subject=CID%20%E2%80%94%20my%20AI%20project" class="clink clink-mail">benan@cogdev.ai &rarr;</a>
             <a href="https://www.benandemir.com" target="_blank" rel="noopener" class="clink clink-alt">More about me</a>
