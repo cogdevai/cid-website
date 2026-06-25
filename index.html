@@ -171,6 +171,13 @@
         .svc-side{display:flex;justify-content:flex-end}
         .svc-cta{padding:12px 24px;border-radius:100px;border:1.5px solid var(--ink-m);color:var(--ink);font-family:var(--disp);font-weight:600;font-size:13px;text-decoration:none;transition:background .3s,border-color .3s,transform .3s,color .3s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
         .svc-cta:hover{background:var(--coral);border-color:var(--coral);color:#fff;transform:translateY(-2px)}
+        .svc-book{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+        .svc-price{padding:11px 22px;border-radius:100px;font-family:var(--disp);font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:9px;white-space:nowrap;transition:background .3s,border-color .3s,transform .3s,color .3s;justify-content:center}
+        .svc-price .amt{font-weight:700}
+        .svc-price.p30{border:1.5px solid var(--ink-m);color:var(--ink)}
+        .svc-price.p30:hover{border-color:var(--coral);color:var(--coral-d);transform:translateY(-2px)}
+        .svc-price.p60{background:var(--coral);color:#fff}
+        .svc-price.p60:hover{background:var(--coral-d);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,107,87,0.3)}
 
         /* WORK */
         .builds{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:70px}
@@ -229,6 +236,7 @@
             .jstep .jarrow{display:none}
             .svc-row{grid-template-columns:1fr;gap:16px;padding:30px 0;align-items:start}
             .svc-side{justify-content:flex-start}
+            .svc-book{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
             .nav-links{display:none;position:fixed;inset:0;background:rgba(255,253,250,0.98);flex-direction:column;justify-content:center;align-items:center;gap:28px;z-index:99}
             .nav-links.open{display:flex}
             .nav-links a{font-size:18px}
@@ -358,9 +366,14 @@
                 <div class="svc-num">01</div>
                 <div class="svc-body">
                     <h3>Consultation</h3>
-                    <p>Book me by the hour. Maybe you know exactly what you want to build but not how the AI should actually work. Which data, what it means, how to make it smart and safe. We'll talk it through and you'll leave with a real plan, not a pile of jargon.</p>
+                    <p>Book a call and leave with a real plan, not a pile of jargon. Maybe you know exactly what you want to build but not how the AI should actually work. Which data, what it means, how to make it smart and safe. We'll talk it through on a video call.</p>
                 </div>
-                <div class="svc-side"><a href="mailto:benan@cogdev.ai?subject=CID%20%E2%80%94%20Consultation" class="svc-cta">Tell me about it! &rarr;</a></div>
+                <div class="svc-side">
+                    <div class="svc-book">
+                        <a href="https://calendly.com/benan-cogdev/30min" target="_blank" rel="noopener" class="svc-price p30">30 min <span class="amt">&euro;80</span> &rarr;</a>
+                        <a href="https://calendly.com/benan-cogdev/30-minute-meeting-clone" target="_blank" rel="noopener" class="svc-price p60">60 min <span class="amt">&euro;135</span> &rarr;</a>
+                    </div>
+                </div>
             </div>
 
             <div class="svc-row rv">
