@@ -178,6 +178,7 @@
         .svc-price.p30:hover{border-color:var(--coral);color:var(--coral-d);transform:translateY(-2px)}
         .svc-price.p60{background:var(--coral);color:#fff}
         .svc-price.p60:hover{background:var(--coral-d);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,107,87,0.3)}
+        .svc-book-note{width:100%;font-size:11.5px;color:var(--ink-m);font-weight:400;margin-top:4px;text-align:right;white-space:nowrap}
 
         /* WORK */
         .builds{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:70px}
@@ -237,6 +238,7 @@
             .svc-row{grid-template-columns:1fr;gap:16px;padding:30px 0;align-items:start}
             .svc-side{justify-content:flex-start}
             .svc-book{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+            .svc-book-note{text-align:left}
             .nav-links{display:none;position:fixed;inset:0;background:rgba(255,253,250,0.98);flex-direction:column;justify-content:center;align-items:center;gap:28px;z-index:99}
             .nav-links.open{display:flex}
             .nav-links a{font-size:18px}
@@ -372,6 +374,7 @@
                     <div class="svc-book">
                         <a href="https://calendly.com/benan-cogdev/30min" target="_blank" rel="noopener" class="svc-price p30">30 min <span class="amt">&euro;80</span> &rarr;</a>
                         <a href="https://calendly.com/benan-cogdev/30-minute-meeting-clone" target="_blank" rel="noopener" class="svc-price p60">60 min <span class="amt">&euro;135</span> &rarr;</a>
+                        <span class="svc-book-note">Video call &middot; book in your own timezone</span>
                     </div>
                 </div>
             </div>
