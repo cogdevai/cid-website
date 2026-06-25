@@ -181,7 +181,12 @@
         .svc-book-note{width:100%;font-size:11.5px;color:var(--ink-m);font-weight:400;margin-top:4px;text-align:right;white-space:nowrap}
 
         /* WORK */
-        .builds{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:70px}
+        .pstats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:56px}
+        .pstat .pn{font-family:var(--disp);font-weight:700;font-size:clamp(34px,4vw,48px);letter-spacing:-.02em;color:var(--coral-d);line-height:1}
+        .pstat .pl{font-size:13px;color:var(--ink-s);font-weight:400;margin-top:9px;line-height:1.45;max-width:190px}
+        .work-foot{text-align:center;margin-top:50px}
+        .work-foot p{font-size:14.5px;color:var(--ink-s);font-weight:300;margin-bottom:18px}
+        .builds{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px}
         .bcard{border:1px solid var(--ink-l);border-radius:26px;padding:40px 32px;transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s,border-color .45s;position:relative;overflow:hidden;background:var(--card)}
         .bcard:hover{transform:translateY(-7px);box-shadow:0 26px 60px -24px rgba(28,43,51,0.22);border-color:var(--card-c,var(--coral))}
         .bcard h3{font-family:var(--disp);font-size:25px;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
@@ -233,6 +238,7 @@
             .niche-grid{grid-template-columns:1fr;gap:34px}
             .builds{grid-template-columns:1fr}
             .values{grid-template-columns:1fr 1fr;gap:16px}
+            .pstats{grid-template-columns:1fr 1fr;gap:28px 18px}
             .journey{grid-template-columns:1fr 1fr;gap:14px}
             .jstep .jarrow{display:none}
             .svc-row{grid-template-columns:1fr;gap:16px;padding:30px 0;align-items:start}
@@ -283,7 +289,7 @@
         <a href="#help">For founders</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="#contact" class="nb">Tell me about it!</a>
+        <a href="mailto:benan@cogdev.ai?subject=CID%20my%20AI%20project" class="nb">Tell me about it!</a>
     </div>
 </nav>
 
@@ -301,7 +307,7 @@
             <span class="chip">Kids</span>
         </div>
         <div class="hero-actions">
-            <a href="#contact" class="btn btn-coral">Tell me about it! &rarr;</a>
+            <a href="mailto:benan@cogdev.ai?subject=CID%20my%20AI%20project" class="btn btn-coral">Tell me about it! &rarr;</a>
             <a href="#services" class="btn btn-line">See how I help</a>
         </div>
     </div>
@@ -405,7 +411,14 @@
         <div class="rv">
             <span class="sec-label">A bit of proof</span>
             <h2 class="sec-h">Intelligence I've built for real people.</h2>
-            <p class="sec-p">Every one of these started with the same question I'll ask you: what does your data really mean, and how do we turn it into something a person can actually trust?</p>
+            <p class="sec-p">This is a slice of a decade of work. Every one of these started with the same question I'll ask you: what does your data really mean, and how do we turn it into something a person can actually trust?</p>
+        </div>
+
+        <div class="pstats stg">
+            <div class="pstat rv" style="--i:0"><div class="pn">6M</div><div class="pl">users reached by AI I've put into production</div></div>
+            <div class="pstat rv" style="--i:1"><div class="pn">80%+</div><div class="pl">real-time prediction accuracy at scale</div></div>
+            <div class="pstat rv" style="--i:2"><div class="pn">10+ yrs</div><div class="pl">designing predictive AI and ML systems</div></div>
+            <div class="pstat rv" style="--i:3"><div class="pn">PhD</div><div class="pl">brain, mind &amp; computer science · Padova &amp; Edinburgh</div></div>
         </div>
 
         <div class="builds stg">
@@ -438,6 +451,11 @@
                 <div class="btype">Conversation intelligence</div>
                 <p>Reads how people really feel and decide from the way they talk, not just what they say. The cognitive-science layer is the whole difference between a transcript and an understanding.</p>
             </article>
+        </div>
+
+        <div class="work-foot rv">
+            <p>Before CID I built the AI at Stardust (6M users), led behavioral science at CoachHub, and co-founded an emotion-AI startup. There's a lot more where this came from.</p>
+            <a href="https://www.benandemir.com/ml/#projects" target="_blank" rel="noopener" class="btn btn-line">See the full ML portfolio &rarr;</a>
         </div>
     </div>
 </section>
