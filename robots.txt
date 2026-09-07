@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /neblina/
 
 Sitemap: https://cogdev.ai/sitemap.xml
