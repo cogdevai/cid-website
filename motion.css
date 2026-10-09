@@ -26,3 +26,7 @@
 @media(max-width:700px){.report-glyph{height:24px;gap:8px}.report-glyph>span{font-size:30px}.report-glyph>i{font-size:8px}}
 @media(max-height:760px) and (min-width:901px){.report-glyph{height:26px}}
 .motion-ready .motion-story{scroll-margin-top:0;overflow-anchor:none}
+/* The revised gender-ambiguous asset is already a bust. */
+.anatomy-frame img{width:100%;left:0;top:0}
+.scene-figure img{width:112%;margin-left:-6%}
+@media(max-width:700px){.anatomy-frame img{width:105%;left:-2.5%;top:0}.scene-figure img{width:120%;margin-left:-10%}}
