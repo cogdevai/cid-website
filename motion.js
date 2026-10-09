@@ -86,9 +86,9 @@
     story.classList.toggle('story-in-view',rect.top < innerHeight && rect.bottom > 0);
     chapters.forEach((chapter,i)=>{
       const alpha = clamp(1-Math.abs(q-i)*1.65);
-      chapter.style.opacity = alpha;
-      chapter.style.transform = `translateY(${(i-q)*18}px)`;
-      chapter.classList.toggle('chapter-active',alpha>0);
+      chapter.style.opacity = i===nearest ? 1 : 0;
+      chapter.style.transform = `translateY(${i===nearest ? 0 : 12}px)`;
+      chapter.classList.toggle('chapter-active',i===nearest);
       chapter.setAttribute('aria-hidden',String(i!==nearest));
       scenes[i].style.opacity = alpha;
       scenes[i].style.transform = `translateY(${(i-q)*14}px) scale(${1-Math.min(.04,Math.abs(q-i)*.035)})`;
