@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const campaignNames = new Set(['what_next', 'feeding_notes', 'first_foods', 'reactions', 'milk_and_solids', 'launch_2026']);
+  const campaignNames = new Set(['what_next', 'feeding_notes', 'first_foods', 'reactions', 'milk_and_solids', 'launch_2026', 'first_foods_nov2026']);
   const allowedSources = new Set(['instagram', 'tiktok', 'youtube', 'facebook', 'newsletter', 'partner', 'organic']);
   const params = new URLSearchParams(location.search);
   // Campaign codes only. Never send free text, baby details or the full referrer.
@@ -9,8 +9,9 @@
   const content = /^[a-z0-9_]{1,48}$/.test(params.get('utm_content') || '') ? params.get('utm_content') : 'website';
   const providerToken = window.TINYTASTE_MARKETING?.appleProviderToken || '';
   const sourceCodes = {instagram:'ig',tiktok:'tt',youtube:'yt',facebook:'fb',newsletter:'nl',partner:'partner',organic:'web'};
-  const campaignCodes = {what_next:'next',feeding_notes:'notes',first_foods:'foods',reactions:'reactions',milk_and_solids:'milk',launch_2026:'launch'};
-  const campaignToken = `tt_${sourceCodes[source]}_${campaignCodes[campaign]}_${content.slice(-10)}`.slice(0,30);
+  const campaignCodes = {what_next:'next',feeding_notes:'notes',first_foods:'foods',reactions:'reactions',milk_and_solids:'milk',launch_2026:'launch',first_foods_nov2026:'launch'};
+  // Aggregate by channel/message while volumes are low; Apple suppresses small campaigns.
+  const campaignToken = `tt_${sourceCodes[source]}_${campaignCodes[campaign]}`;
   document.querySelectorAll('.store-link').forEach(link => {
     const url = new URL('https://apps.apple.com/app/id6760778450');
     // Apple's generated provider token is required. Do not imply attribution without it.
