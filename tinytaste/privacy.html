@@ -1,90 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — TinyTaste</title>
-    <link rel="canonical" href="https://cogdev.ai/tinytaste/privacy.html">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'DM Sans', sans-serif; background: linear-gradient(165deg, #C4868E, #D4A89A, #C99878, #A87A9E, #8A7AAC); color: #fff; min-height: 100vh; padding: 60px 24px; }
-        .container { max-width: 700px; margin: 0 auto; }
-        h1 { font-family: 'Space Mono', monospace; font-size: 24px; margin-bottom: 8px; }
-        .updated { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 32px; }
-        h2 { font-family: 'Space Mono', monospace; font-size: 14px; margin-top: 28px; margin-bottom: 8px; letter-spacing: 0.05em; }
-        p, li { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 12px; }
-        ul { padding-left: 20px; }
-        a { color: #C8F547; }
-        .back { display: inline-block; margin-bottom: 24px; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy | TinyTaste</title>
+  <meta name="description" content="How TinyTaste handles on-device feeding logs, synced profile details, account information, personalised features, analytics and deletion requests.">
+  <link rel="canonical" href="https://cogdev.ai/tinytaste/privacy.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="resources/resources.css">
 </head>
 <body>
-<div class="container">
-    <a href="./" class="back">&larr; Back to TinyTaste</a>
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: April 7, 2026</p>
-
-    <h2>1. Introduction</h2>
-    <p>TinyTaste ("the App") is operated by Cognitive Intelligence Development ("CID", "we", "us"). We respect your privacy and are committed to protecting your personal data. This policy explains how we collect, use, and safeguard your information.</p>
-
-    <h2>2. Data We Collect</h2>
-    <p>We collect the following data that you voluntarily provide:</p>
-    <ul>
-        <li><strong>Baby profile information:</strong> Name, date of birth, due date (optional), weaning start date, milk feeding type</li>
-        <li><strong>Food and milk logs:</strong> Foods logged, reactions, textures, amounts, meal times, notes</li>
-        <li><strong>Supplement tracking:</strong> Supplement names and daily check-off status</li>
-        <li><strong>Journal entries:</strong> Freeform text entries you write</li>
-        <li><strong>Account data:</strong> If you sign in with Apple, we receive your Apple ID identifier</li>
-    </ul>
-
-    <h2>3. How We Use Your Data</h2>
-    <ul>
-        <li>To provide personalised nutrition insights and recipe suggestions</li>
-        <li>To generate AI-powered developmental insights based on your baby's age</li>
-        <li>To track nutrition patterns and identify gaps in your baby's diet</li>
-        <li>To sync your data across devices (if signed in)</li>
-        <li>To improve the App through anonymised analytics</li>
-    </ul>
-
-    <h2>4. Data Storage</h2>
-    <p>Your food logs, milk logs, journal entries, and supplement data are stored <strong>locally on your device</strong> using Apple's SwiftData framework, protected by iOS Data Protection (encrypted at rest). This data is never uploaded to or stored on our servers.</p>
-    <p>If you sign in, only your subscription status and usage counts are stored in Google Firebase Firestore. We do not store your baby's name, food logs, or any health data on our servers. We do not sell your data to third parties.</p>
-
-    <h2>5. User Identity & Security</h2>
-    <p>Your account is identified internally by a Firebase Authentication user ID. This ID is <strong>never exposed to you or shared externally</strong>.</p>
-    <p>For support purposes, we generate a <strong>Support ID</strong> — a cryptographic code created using a one-way keyed hash (HMAC-SHA256) of your user ID with a secret key. This Support ID:</p>
-    <ul>
-        <li>Cannot be reversed to reveal your actual user ID</li>
-        <li>Cannot be used to access your account or personal data</li>
-        <li>Is only used to help us locate your account if you contact support</li>
-    </ul>
-    <p>In our backend logs, user activity is recorded using a separate one-way hash of your user ID. Raw user IDs are never written to logs, displayed in admin tools, or shared with third parties.</p>
-
-    <h2>6. AI Processing</h2>
-    <p>When you use intelligent features (recipe generation, insights), your baby's food log data is sent to our backend server over an encrypted connection (HTTPS/TLS) for processing via Anthropic's Claude AI. This data is used solely to generate personalised content and is <strong>not stored</strong> on our servers or Anthropic's servers after the response is returned. Anthropic does not use your data for model training.</p>
-
-    <h2>7. Third-Party Services</h2>
-    <ul>
-        <li><strong>Firebase:</strong> Authentication, Firestore (subscription data), Analytics, Crashlytics</li>
-        <li><strong>Anthropic Claude AI:</strong> Recipe and insight generation</li>
-        <li><strong>Apple:</strong> Sign in with Apple, In-App Purchases, App Store</li>
-    </ul>
-
-    <h2>8. Children's Privacy</h2>
-    <p>TinyTaste is designed for parents and caregivers, not for use by children directly. The baby profile data you enter is under your control as the parent. We do not knowingly collect data from children under 13.</p>
-
-    <h2>9. Data Deletion</h2>
-    <p>You can delete your account and all associated data at any time through Settings > Delete Account in the App. This permanently removes your data from both the device and our servers.</p>
-
-    <h2>10. Your Rights</h2>
-    <p>You have the right to access, correct, or delete your personal data. Contact us at <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a> for any data requests.</p>
-
-    <h2>11. Changes</h2>
-    <p>We may update this policy from time to time. We will notify you of significant changes through the App.</p>
-
-    <h2>12. Contact</h2>
-    <p>Cognitive Intelligence Development<br>Email: <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a><br>Website: <a href="https://cogdev.ai">cogdev.ai</a></p>
-</div>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header"><a class="brand" href="/tinytaste/"><img src="/tinytaste/assets/app-icon.png" alt="" width="38" height="38">TinyTaste</a><nav class="header-links" aria-label="Main navigation"><a href="/tinytaste/">Back to TinyTaste</a></nav></header>
+  <main id="content">
+    <div class="legal-header"><p class="eyebrow">TinyTaste</p><h1>Privacy policy</h1><p class="updated">Last updated: 18 November 2026</p></div>
+    <article class="article legal" aria-label="TinyTaste privacy policy">
+      <section class="summary"><h2>The main points</h2><p>Your detailed feeding history is kept in the app's on-device database. Signing in can also save basic baby profile details to our cloud database. It does not sync or restore your full food and milk history.</p><p>Personalised questions, recipes and insights can send relevant profile and log information to our backend and Anthropic for processing. We also use account, usage, purchase and diagnostic data to run and improve the service. These systems are not anonymous and do not all have the same retention or deletion rules.</p></section>
+      <section><h2>1. Who operates TinyTaste</h2><p>TinyTaste is operated by Cognitive Intelligence Development ("CID", "we", "us"). This policy describes information handled by the iPhone app, its backend services and these TinyTaste web pages. For privacy questions or requests, email <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a>.</p><p>The app is intended for parents and caregivers. The baby information a caregiver enters is still personal information about that child; this policy does not describe it as anonymous merely because a child does not use the app directly.</p></section>
+      <section><h2>2. Information stored in the app</h2><p>The app stores information you enter in an on-device database using Apple's SwiftData framework. Depending on the features you use, this includes:</p><ul>
+        <li>Baby profiles: name, date of birth, optional due date, weaning start date, milk type and an optional city and country.</li>
+        <li>Food logs: foods, textures, amounts, dates or meal times, responses, reaction flags, notes and caregiver labels.</li>
+        <li>Milk logs: feed type, amount, duration, time, notes and caregiver labels.</li>
+        <li>Journal entries, supplement records, allergen records, saved recipes and app preferences.</li>
+      </ul><p>These records are not automatically backed up or shared between caregivers by TinyTaste account sign-in. Device backups and restoration may also depend on your Apple and iOS settings. Relevant information from this database can leave your device when you use the remote features described below.</p></section>
+      <section><h2>3. Accounts and synced baby profile details</h2><p>TinyTaste uses Firebase Authentication. Available sign-in methods include Apple, Google and email/password. A guest session can also have a Firebase account identifier; "guest" does not mean that no identifier is used. Authentication information can include your email address, provider identifier and information supplied by the sign-in provider. Firebase handles email/password authentication.</p><p>For a signed-in, non-guest account, the app saves basic baby profile details to Cloud Firestore: baby name, date of birth, weaning start date, milk type, optional due date and a sync timestamp. This supports restoring those details after signing in again. Detailed food and milk logs, journals and supplement history are not restored through that profile sync.</p><p>Our server also holds subscription status, feature usage counts, account and activity timestamps, app version, sign-in method and summary activity information, such as baby age in months, weaning week and counts of logged food or milk entries.</p></section>
+      <section><h2>4. Personalised questions, recipes and insights</h2><p>When you request these features, the app sends information over HTTPS to our backend, currently hosted on Railway. Depending on the request, this can include:</p><ul>
+        <li>Baby name, birth date, weaning start date, milk type and calculated age or weaning week.</li>
+        <li>Food and milk entries, including dates, amounts, textures, responses and notes.</li>
+        <li>Your question, relevant library passages, summaries of your baby's log, recently logged foods and calculated nutrition indicators.</li>
+        <li>For a recipe covering two profiles, information from both profiles and their logs.</li>
+      </ul><p>The backend sends relevant profile information, log summaries and your question or request to Anthropic's Claude API to generate a response. Avoid putting information in questions or notes that you do not want processed in this way.</p><p>Processing is not a promise of zero retention. Anthropic's published commercial API policies describe retention periods and exceptions, and state that commercial inputs and outputs are not used for model training by default. See <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">Anthropic's retention information</a> and <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training">model training information</a>. Provider policies and applicable service settings govern their handling of submitted content.</p></section>
+      <section><h2>5. Optional location feature</h2><p>The seasonal produce feature can ask for iOS location permission. With permission, the app uses device location and Apple's geocoding service to obtain a city and country. You can also enter a location. The selected city, country and month are sent to our backend and Anthropic to generate seasonal suggestions.</p><p>The current backend request uses city and country rather than latitude and longitude. Apple receives the device location used for geocoding and processes it under its own terms. You can manage location permission in iOS Settings.</p></section>
+      <section><h2>6. Usage, diagnostics and service security</h2><p>We use Google Analytics for Firebase, Firebase Crashlytics and backend event tracking to understand app use, diagnose failures and operate the service. Events can include screen views, onboarding progress, feature requests, food categories, response values, milk feed types, tracked allergen names, subscription events, age in months, usage counts and error messages.</p><p>Backend events use a shortened hash derived from an account identifier, or an IP-derived identifier for some unauthenticated requests. This is pseudonymous information, not a guarantee of anonymity. The service can associate activity with an account and store summary activity on its user record.</p><p>Crash and bug reports can include app and operating system versions, device model, technical error details and context. Bug reports stored in Firestore can include the Firebase account identifier. Network and security systems can process IP addresses, authentication tokens, App Check information and request metadata. Some security logs can contain excerpts of submitted text when detecting misuse.</p><p>For more about Google's service-specific handling, identifiers, storage locations and retention, see <a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a>. We do not claim that using a hashed identifier removes the privacy implications of these records.</p></section>
+      <section><h2>7. Purchases, support and other providers</h2><p>Apple handles App Store purchases. TinyTaste receives and processes subscription and transaction information to validate purchases, restore access and update subscription status. This can include product and transaction identifiers, expiry information, an app account token and signed transaction data. The app does not ask you to enter payment card details.</p><p>When operational subscription notifications are enabled, the backend sends subscription event information to an operator Telegram channel. This can include email address, a hashed account identifier, plan, subscription status and original transaction identifier.</p><p>If you contact us, we receive the information you send and use it to respond and investigate the issue. A Support ID can help locate an account. Support IDs and hashed IDs should be treated as account-related identifiers rather than described as untraceable or anonymous.</p><p>Apple, Google/Firebase, Anthropic, Railway and, when enabled, Telegram process information in their roles providing these services. Their infrastructure may process data outside your country. We do not make a blanket claim that data stays on your device, within a particular country or only within CID.</p></section>
+      <section><h2>8. These web pages</h2><p>The TinyTaste website and its hosting infrastructure process technical request information when you visit. These pages load typefaces from Google Fonts, so your browser makes requests to Google that can include your IP address and browser information. App Store links take you to Apple's service, where Apple's privacy practices apply.</p></section>
+      <section><h2>9. Retention and deletion</h2><p>On-device records remain in the app's local storage until removed. The current app can retain local profiles and logs after sign-out or account deletion; account deletion should not be treated as wiping the device copy. To remove the app and its local data from an iPhone, use iOS <strong>Delete App</strong> rather than Offload App. See <a href="https://support.apple.com/en-gb/108429">Apple’s explanation of app storage and deletion</a>. Copies in device backups are subject to your Apple backup settings.</p><p>Settings &gt; Delete Account requests deletion of your Firebase Authentication account and Firestore user document, including synced profile and subscription data held there. If a deletion cannot be completed, or you need help removing remaining information, contact <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a>.</p><p>Account deletion does not automatically erase all separate analytics events, daily activity records, bug reports, security logs, support messages, operational notifications, backups or provider-held records. These can have different retention and deletion processes. We do not promise immediate or complete removal from every system when the account action finishes. Contact us to request deletion or review of remaining account-related information.</p><p>Provider retention also varies by service and purpose, including security and legal obligations. Refer to the Firebase and Anthropic information linked above for their current published practices.</p></section>
+      <section><h2>10. Your choices and requests</h2><p>You can edit profile information and entries in the app, manage iOS location and notification permissions, and choose whether to use personalised remote features. You can ask us about access, correction, a copy of your information or deletion by emailing <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a>. We may need information to verify that the request concerns your account. Additional rights may depend on where you live.</p><p>Deleting an app account does not itself cancel an Apple subscription. Manage or cancel subscriptions through your Apple account settings.</p></section>
+      <section><h2>11. Policy changes and contact</h2><p>We will update this page when the practices described here change. The date at the top identifies the latest revision.</p><p>Cognitive Intelligence Development<br>Email: <a href="mailto:tinytaste@cogdev.ai">tinytaste@cogdev.ai</a><br>Website: <a href="https://cogdev.ai">cogdev.ai</a></p></section>
+    </article>
+  </main>
+  <footer class="site-footer"><span>© 2026 TinyTaste</span><nav class="footer-links" aria-label="Footer"><a href="/tinytaste/">TinyTaste</a><a href="/tinytaste/terms.html">Terms</a><a href="/tinytaste/support/">Support</a></nav></footer>
 </body>
 </html>
